@@ -33,7 +33,32 @@ public class Main {
 
 	//佐藤くんここに書いてえええ
 	
-	
+	package main;
+
+import javax.swing.JButton;
+
+import library.LibraryDraw;
+import library.LibraryMain;
+import title.TitleDraw;
+import title.TitleMain;
+
+
+public class Main {
+
+
+  public static void main(String[] args) {
+	  
+	  
+	  LibraryMain Lframe = new LibraryMain("図鑑",480,620);
+	   LibraryDraw LD=new LibraryDraw();
+
+	   //Lframe.OpenLib();
+	   Lframe.add(LD);
+	   Lframe.setVisible(true);
+
+
+  }
+}
 	
 	
 	
