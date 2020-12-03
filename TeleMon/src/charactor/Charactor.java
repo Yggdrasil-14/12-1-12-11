@@ -21,12 +21,7 @@ public class Charactor {
 		this.friendship=Integer.parseInt(data[7]);
 		this.limitOfReceiveBait=Integer.parseInt(data[8]);
 		limitOfReceiveBaitForReset=this.limitOfReceiveBait;
-		this.increaseValueOfReceiveBait[0]=Integer.parseInt(data[9]);
-		this.increaseValueOfReceiveBait[1]=Integer.parseInt(data[10]);
-		this.increaseValueOfReceiveBait[2]=Integer.parseInt(data[11]);
-		this.increaseValueOfReceiveBait[3]=Integer.parseInt(data[12]);
-		this.increaseValueOfReceiveBait[4]=Integer.parseInt(data[13]);
-		this.increaseValueOfReceiveBait[5]=Integer.parseInt(data[14]);
+		for(int i=0;i<6;i++) this.increaseValueOfReceiveBait[i]=Integer.parseInt(data[9+i]);
 		this.imagePass="相対パス"+data[1]+".png";	//相対パスをあとで記載　※忘れるな
 	}
 	
