@@ -1,6 +1,9 @@
 package main;
 
+import encount.EncountFrame;
 import home.Home;
+import library.LibraryDraw;
+import library.LibraryMain;
 import title.TitleMain;
 
 
@@ -8,58 +11,38 @@ public class Main {
 
 	 static TitleMain Tframe;
 	 static Home home;
+	 static LibraryMain Lframe;
+	 static LibraryDraw LD;
+	 static EncountFrame EF;
+
 
   public static void main(String[] args) {
 
-    Tframe = new TitleMain();//インスタンス化
+    Tframe = new TitleMain();
     home = new Home();
-   //LibraryMain Lframe = new LibraryMain("図鑑",480,620);
-
+      Lframe = new LibraryMain("ZUKAN",480,620);
+	  LD =new LibraryDraw();
+	  Lframe.add(LD);
+	EF = new EncountFrame();
+	EF.OpenEncount();
     Tframe.OpenTitle();
-	  
-	  
-	 // home.setVisible(true);//ウィンドウ表示
-	  Tframe.setVisible(true);
+	Tframe.setVisible(true);
 
   }
 
-  public static void OpenHome() {
-
+  public static void OpenH() {
 	  Tframe.setVisible(false);
 	  home.OpenHome();
 	  home.setVisible(true);
-
+  }
+  public static void OpenL() {
+	  home.setVisible(false);
+	  Lframe.setVisible(true);
+  }
+  public static void OpenE() {
+	  home.setVisible(false);
+	  EF.setVisible(true);
   }
 
-	//佐藤くんここに書いてえええ
-	
-	package main;
 
-import javax.swing.JButton;
-
-import library.LibraryDraw;
-import library.LibraryMain;
-import title.TitleDraw;
-import title.TitleMain;
-
-
-public class Main {
-
-
-  public static void main(String[] args) {
-	  
-	  
-	  LibraryMain Lframe = new LibraryMain("図鑑",480,620);
-	   LibraryDraw LD=new LibraryDraw();
-
-	   //Lframe.OpenLib();
-	   Lframe.add(LD);
-	   Lframe.setVisible(true);
-
-
-  }
-}
-	
-	
-	
 }

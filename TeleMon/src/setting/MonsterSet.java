@@ -1,19 +1,17 @@
-package title;
-
+package setting;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
+public class MonsterSet extends JPanel{
 
 
-
-public class TitleDraw extends JPanel{
-	Image img = Toolkit.getDefaultToolkit().getImage("telemon.png");
 	public void paintComponent(Graphics g) {
+		Image img = Toolkit.getDefaultToolkit().getImage("Grass.png");
 		super.paintComponent(g);
 
-		g.drawImage(img, 0, 0, 480,620,this);
+		g.drawImage(img, 200, 100,10,10,this);
 
 	}
 }

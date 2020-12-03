@@ -1,12 +1,18 @@
 package home;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
 
-public class Home extends JFrame{
+public class Home extends JFrame implements ActionListener{
+
+	public static final String search = "search";
+	public static final String library = "library";
 
 		public void OpenHome() {
 			this.setTitle("Home");
@@ -15,47 +21,62 @@ public class Home extends JFrame{
 			this.setLocationRelativeTo(null);
 			this.setResizable(false);
 
+			JLayeredPane pane = new JLayeredPane();
+			
 			HomeLayout HL = new HomeLayout();
-			HL.setBounds(0,0,480,570);
-			//LayeredPane.add(TD);
+			HL.setBounds(0,0,480,620);
 
 			Container contentPane = getContentPane();
-			// ボタンのインスタンスを生成
-			JButton btn1 = new JButton("探索");
-			JButton btn2 = new JButton("図鑑");
-			JButton btn3 = new JButton("ポロック");
-			JButton btn4 = new JButton("セーブ");
-//btn1.addActionListener(this);
-			contentPane.setLayout(null);
-		 // ラベルをContentPaneに配置
+
+			JButton btn1 = new JButton("search");
+			JButton btn2 = new JButton("library");
+			JButton btn3 = new JButton("polock");
+			JButton btn4 = new JButton("save");
+			
+			btn1.setActionCommand(search);
+			btn1.addActionListener(this);
+			btn2.setActionCommand(library);
+            btn2.addActionListener(this);
+			//contentPane.setLayout(null);
 
 
-			contentPane.add(btn1);
-			contentPane.add(btn2);
-			contentPane.add(btn3);
-			contentPane.add(btn4);
-			contentPane.add(HL);
 
-			btn1.setBounds(150,570,80,30);
-			btn2.setBounds(60,570,80,30);
+//			contentPane.add(btn1);
+//			contentPane.add(btn2);
+//			contentPane.add(btn3);
+//			contentPane.add(btn4);
+//			contentPane.add(HL);
+
+			btn1.setBounds(60,570,80,30);
+			btn2.setBounds(150,570,80,30);
 			btn3.setBounds(240,570,80,30);
 			btn4.setBounds(330,570,80,30);
 
-			validate();
+			pane.add(btn1);
+			pane.add(btn2);
+			pane.add(btn3);
+			pane.add(btn4);
+			pane.setLayer(btn1, 50);
+			pane.setLayer(btn2, 51);
+			pane.setLayer(btn3, 52);
+			pane.setLayer(btn4, 53);
+			pane.add(HL);
+			pane.setLayer(HL, 42);
+			contentPane.add(pane);
 
 }
-		}
 
-//public void actionPerformed(ActionEvent event){
-//System.out.println("キーイベントです");
-////mainFrame.setVisible(false);
-////StartMain Sframe = new StartMain();//インスタンス化
-//
-////Sframe.startWindow();
-//
-////FrameMain frame = new FrameMain();//インスタンス化
-//
-//
-//}
 
+public void actionPerformed(ActionEvent event){
+
+	String cmd = event.getActionCommand();
+
+	if(cmd.equals(search)) {
+System.out.println("press bottun");
+main.Main.OpenE();}
+	else if(cmd.equals(library)) {
+		System.out.println("press bottun");
+		main.Main.OpenL();}
+}
+}
 
