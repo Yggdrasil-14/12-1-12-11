@@ -1,56 +1,50 @@
 package bait;
 
 public class Bait {
-	public static final int baitKindNumber=6;
-	public static final int completeBonusNumber=4;
+	private int numberOfBait[]=new int[6];
+	private int completeBonus[]=new int[4];
+	private String name[]=new String[6];
 	
-	private String name[]=new String[baitKindNumber];
-	private int numberOfBait[]=new int[baitKindNumber];
-	private int completeBonus[]=new int[completeBonusNumber];
-	
-	//コンストラクタ
-	public Bait(String data[]) {
-		for(int i=0;i<baitKindNumber;i++) this.name[i]=data[i];
-		for(int i=0;i<baitKindNumber;i++) this.numberOfBait[i]=Integer.parseInt(data[baitKindNumber+i]);
-		for(int i=0;i<completeBonusNumber;i++) this.completeBonus[i]=Integer.parseInt(data[baitKindNumber*2+i]);
+	Bait(String data[]) {
+		for(int i=0;i<6;i++) this.name[i]=data[i];
+		for(int i=0;i<6;i++) this.numberOfBait[i]=Integer.parseInt(data[6+i]);
+		for(int i=0;i<4;i++) this.completeBonus[i]=Integer.parseInt(data[12+i]);
 	}
 	
 	//モンスターゲットボーナス
 	public void monsterGetBonus() {
-		increaseBait(2);
+		for(int i=0;i<6;i++) increaseBait(i,2);
 	}
 	
 	//なつき度マックスボーナス
 	public void friendshipMaxBonus() {
-		increaseBait(5);
+		for(int i=0;i<6;i++) increaseBait(i,5);
 	}
 	
 	//図鑑コンプリート率ボーナス
 	public void libraryCompleteBonus(int completeRate) {
 		if(completeBonus[0]==0&&completeRate>25) {
-			increaseBait(2);
+			for(int i=0;i<6;i++) increaseBait(i,2);
 			completeBonus[0]=1;
 		}
 		if(completeBonus[1]==0&&completeRate>50) {
-			increaseBait(5);
+			for(int i=0;i<6;i++) increaseBait(i,5);
 			completeBonus[1]=1;
 		}
 		if(completeBonus[2]==0&&completeRate>75) {
-			increaseBait(7);
+			for(int i=0;i<6;i++) increaseBait(i,7);
 			completeBonus[2]=1;
 		}
 		if(completeBonus[3]==0&&completeRate==100) {
-			increaseBait(10);
+			for(int i=0;i<6;i++) increaseBait(i,10);
 			completeBonus[3]=1;
 		}
 	}
 	
 	//ポロック増加
-	public void increaseBait(int elapsedTime) {
-		for(int i=0;i<baitKindNumber;i++) {
-			if(numberOfBait[i]+elapsedTime<10) numberOfBait[i]+=elapsedTime;
-			else numberOfBait[i]=10;
-		}
+	public void increaseBait(int kind,int number) {
+		if(numberOfBait[kind]+number<10) numberOfBait[kind]+=number;
+		else numberOfBait[kind]=10;
 	}
 	//ポロック消費
 	public void useBait(int kind) {

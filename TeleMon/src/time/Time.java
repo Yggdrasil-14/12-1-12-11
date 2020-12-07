@@ -1,14 +1,16 @@
 package time;
 
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class Time {
-	private LocalDateTime nowDateTime,previousDateTime,previousEndDateTime;
+	private LocalDateTime nowDateTime,previousDateTime;
+	private int year,month,date,hour,minute,second;
 	
 	//コンストラクタ
-	public Time(int data[]){
-		previousEndDateTime=LocalDateTime.of(data[0],data[1],data[2],data[3],data[4],data[5]);
+	Time(LocalDateTime recordDate){
+		previousDateTime=recordDate;
 		nowDateTime=LocalDateTime.now();
 	}
 	
@@ -18,45 +20,20 @@ public class Time {
 		nowDateTime=LocalDateTime.now();
 	}
 	
-	//前回計測時間と現在時間の差分を算出
-	public int getHourBetweenPreviousNow() {
-		return (int)getHourBetweenArgumentNow(previousDateTime);
-	}
-	
-	//前回終了時間と現在時間の差分を算出
-	public int getHourBetweenEndNow() {
-		return (int)getHourBetweenArgumentNow(previousEndDateTime);
-	}
-	
-	//引数の時間と現在時間の差分を算出
-	public long getHourBetweenArgumentNow(LocalDateTime start) {
+	//時間の差分算出
+	public int getDifferenceValue() {
 		long differenceValue;
-		differenceValue=ChronoUnit.HOURS.between(start,LocalDateTime.now());
-		return differenceValue;
+		differenceValue=ChronoUnit.SECONDS.between(previousDateTime,nowDateTime);
+		return (int)differenceValue;
 	}
-	public long getSecondBetweenArgumentNow(LocalDateTime start) {
+	public int getDifferenceValue(LocalDateTime start,LocalDateTime end) {
 		long differenceValue;
-		differenceValue=ChronoUnit.SECONDS.between(start,LocalDateTime.now());
-		return differenceValue;
+		differenceValue=ChronoUnit.SECONDS.between(start,end);
+		return (int)differenceValue;
 	}
 	
 	//値取得
-	public int getNowYear() {
-		return nowDateTime.getYear();
-	}
-	public int getNowMonth() {
-		return nowDateTime.getMonthValue();
-	}
-	public int getNowDay() {
-		return nowDateTime.getDayOfMonth();
-	}
-	public int getNowHour() {
-		return nowDateTime.getHour();
-	}
-	public int getNowMinute() {
-		return nowDateTime.getMinute();
-	}
-	public int getNowSecond() {
-		return nowDateTime.getSecond();
+	public LocalDateTime getNowDateTime() {
+		return nowDateTime;
 	}
 }

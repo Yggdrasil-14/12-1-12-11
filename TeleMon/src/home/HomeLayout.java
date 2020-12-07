@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class HomeLayout extends JPanel{
 
-	Image img = Toolkit.getDefaultToolkit().getImage("yggdrasil.png");
+	Image img = Toolkit.getDefaultToolkit().getImage("img/yggdrasil.png");
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 

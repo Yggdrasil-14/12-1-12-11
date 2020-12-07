@@ -22,7 +22,7 @@ public class Main {
     home = new Home();
       Lframe = new LibraryMain("ZUKAN",480,620);
 	  LD =new LibraryDraw();
-	  Lframe.add(LD);
+	  //Lframe.add(LD);
 	EF = new EncountFrame();
 	EF.OpenEncount();
     Tframe.OpenTitle();
@@ -30,6 +30,7 @@ public class Main {
 
   }
 
+  /////////////ウィンドウオープナー////////////////////////////////
   public static void OpenH() {
 	  Tframe.setVisible(false);
 	  home.OpenHome();

@@ -1,12 +1,8 @@
 package library;
 
-import java.awt.AlphaComposite;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-
-
 
 import javax.swing.JPanel;
 
@@ -19,9 +15,11 @@ import javax.swing.JPanel;
 		///////////
 		
 		
-
+		Image book = Toolkit.getDefaultToolkit().getImage("img/Library.png");				//本
 		
-		Image mon1 = Toolkit.getDefaultToolkit().getImage("img/Mon1.png");					//モンスター
+		Image Back = Toolkit.getDefaultToolkit().getImage("img/Background.jpg");			//背景
+		
+		Image mon1 = Toolkit.getDefaultToolkit().getImage("img/アルラウネ1.png");					//モンスター
 		
 		Image question = Toolkit.getDefaultToolkit().getImage("img/UnKnown.png");			//はてな
 		
@@ -38,21 +36,19 @@ import javax.swing.JPanel;
 			///////////
 			//描画
 			///////////
-			Graphics2D g2 = (Graphics2D)g;
-			 
-			//透明度を50%に設定する
-			AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
-			g2.setComposite(ac);
-	 
-			//g2.drawImage(img, 0, 0, this);
+		
+			
+			g.drawImage(Back, 0, 0,480,620, this);				//背景
+			
+			g.drawImage(book, -3, 0,480,620, this);				//本
 					
-			g2.drawImage(mon1, 0, 50,480/2,620/2, this);		//モンスター
+			g.drawImage(mon1, 0, 50,480/2,620/2, this);		//モンスター
 			
-			g2.drawImage(question, 275, 140,150,150, this);		//はてな
+			g.drawImage(question, 275, 140,150,150, this);		//はてな
 			
-			g2.drawImage(Mess_Win, 18, 350,210,130, this);		//メッセージウィンドウ
+			g.drawImage(Mess_Win, 18, 350,210,130, this);		//メッセージウィンドウ
 			
-			g2.drawImage(Mess_Win2, 480/2, 350,210,130, this);	//メッセージウィンドウ2
+			g.drawImage(Mess_Win2, 480/2, 350,210,130, this);	//メッセージウィンドウ2
 
 		}
 	
