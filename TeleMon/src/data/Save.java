@@ -17,6 +17,7 @@ public class Save {
 	public static final int tl = 1;//TimeLines
 	public static final int ll = 0;//LibraryDrawLines
 	public void save(Character ms[],Bait pr[]) {
+	Character cr = new Character("ma");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 try {
 //ファイルの書き込みを行う
@@ -25,10 +26,10 @@ int j = 0;
 for(int i = 0;i<=tdl;i++) {
 if(i==0||i==ml||i==ml+pl) {j = 0;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(i<ml){pw.println(ms[j].getA()+","+ms[j].getC()+","+
-ms[j].getD()+","+ms[j].getE()+","+ms[j].getF()+","+ms[j].getG()+","+
-ms[j].getH()+","+ms[j].getI()+","+ms[j].getJ()+","+ms[j].getK()+","+
-ms[j].getL()+","+ms[j].getN()+","+ms[j].getM()+","+ms[j].getO());
+if(i<ml){pw.println(ms[j].getName()+","+ms[j].getCapture()+","+
+ms[j].getAppearPlace()+","+ms[j].getFriendoship()+","+ms[j].getImagePass()+","+0+","+
+0+","+0+","+0+","+0+","+
+0+","+0+","+0+","+0);
 j++;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(ml<=i&i<ml+pl){pw.println(pr[j].getA()+","+pr[j].getC()+","+
