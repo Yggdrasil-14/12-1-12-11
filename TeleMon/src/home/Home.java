@@ -9,6 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
+import bait.Bait;
+import character.Character;
+import data.Load;
+import data.Save;
+import time.Time;
+
+
 
 public class Home extends JFrame implements ActionListener{
 
@@ -17,8 +24,41 @@ public class Home extends JFrame implements ActionListener{
 	public static final String polock = "polock";
 	public static final String save = "save";
 
+	Load ld = new Load();
+	//Save sv = new Save();
+	Character[] ms = new Character[Save.ml];
+	Bait[] pr = new Bait[Save.pl];
+	Time[] ti = new Time[Save.tl];
+	//LibraryDraw[] ld = new LibraryDraw[Save.ll];
+	String[][] str = new String[Save.tdl][Save.ec];
+		public Home() {
+
+			ld.load(str);
+			storeData(str);
+		}
+		public void storeData(String[][] str) {
+			//
+			int j = 0;
+			for(int i = 0;i<Save.tdl;i++) {
+				//
+				if(i==0||i==Save.ml||i==Save.ml+Save.pl||i==Save.ml+Save.pl+Save.tl) {j = 0;}
+				//Monster
+			if(i<Save.ml) {ms[j]=new Character(str[i]);j++;}
+				//Porock
+				if(Save.ml<=i&i<Save.ml+Save.pl) {pr[j]=new Bait(str[i]);j++;}
+				//Time
+				if(Save.ml+Save.pl<=i&i<Save.ml+Save.pl+Save.tl) {
+					ti[j] = new Time(str[i]);j++;
+				}
+				//if(Save.ml+Save.pl+Save.tl<=i&i<Save.ml+Save.pl+Save.tl+Save.ll) {
+					//ld[j] = new LibraryDraw(str[i]);j++;
+				//}
+			}
+				//sv.save()
+		}
 		public void OpenHome() {
 			this.setTitle("Home");
+			ms[0].practice();
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setSize(480,620);
 			this.setLocationRelativeTo(null);

@@ -9,7 +9,7 @@ public class Character {
 	private int capture,partner,appearPlace,likability,requiredLikabilityToGet,friendship,limitOfReceiveBait,limitOfReceiveBaitForReset;
 	private int increaseValueOfReceiveBait[]=new int[Bait.baitKindNumber];
 	private String name,imagePass;
-	
+
 	//コンストラクタ
 	public Character(String data[]){
 		//データを格納
@@ -25,7 +25,10 @@ public class Character {
 		for(int i=0;i<Bait.baitKindNumber;i++) this.increaseValueOfReceiveBait[i]=Integer.parseInt(data[8+i]);
 		this.imagePass="src/charactor/Material/"+data[1]+".png";	//必要に応じて相対パス変更
 	}
-	
+	public void practice() {
+		System.out.println(name);
+	}
+
 	//ポロック付与上限セット
 	public void setLimitOfReceiveBait() {
 		Random randomValue=new Random();
@@ -40,7 +43,7 @@ public class Character {
 	public void resetLimitOfReceiveBait() {
 		limitOfReceiveBait=limitOfReceiveBaitForReset;
 	}
-	
+
 	//相棒変更
 	public void makePartner() {
 		partner=1;
@@ -48,7 +51,7 @@ public class Character {
 	public void removePartner() {
 		partner=0;
 	}
-	
+
 	//好感度リセット
 	public void resetLikability() {
 		likability=0;
@@ -57,7 +60,7 @@ public class Character {
 	public void increaseLikability(int kind) {
 		likability+=increaseValueOfReceiveBait[kind];
 	}
-	
+
 	//ゲットできるか判定
 	public void judgeCanGet() {
 		if(requiredLikabilityToGet<likability) {
@@ -69,7 +72,7 @@ public class Character {
 		int probabilityOfGet=100*likability/requiredLikabilityToGet*4/5;
 		if(probabilityOfGet<rand) capture=1;
 	}
-	
+
 	//なつき度上昇
 	//時間経過で上昇
 	public void increaseFriendshipOverTime(int elapsedTime) {
@@ -82,7 +85,7 @@ public class Character {
 		if(friendship+increaseValueOfReceiveBait[kind]<100) friendship+=increaseValueOfReceiveBait[kind];
 		else friendship=100;
 	}
-	
+
 	//データ値取得
 	public String getName() {
 		return name;
