@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import bait.Bait;
+import character.Character;
 
 public class Save {
 ////////////////////////////////////////////////////////////////////////////////////
@@ -12,31 +13,30 @@ public class Save {
 ////////////////////////////////////////////////////////////////////////////////////
 	//保存データの数に変更があった場合に記述
 	public static final int tdl = 17;//TotalDataLines
-	public static final int ml = 13;//MonsterLines
-	public static final int pl = 3;//PorockLines
+	public static final int cl = 13;//CharacterLines
+	public static final int bl = 3;//BaitLines
 	public static final int tl = 1;//TimeLines
 	public static final int ll = 0;//LibraryDrawLines
-	public void save(Character ms[],Bait pr[]) {
-	Character cr = new Character("ma");
+	public void save(Character ch[],Bait ba[]) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 try {
 //ファイルの書き込みを行う
 PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("saveFile1.txt")));
 int j = 0;
 for(int i = 0;i<=tdl;i++) {
-if(i==0||i==ml||i==ml+pl) {j = 0;}
+if(i==0||i==cl||i==cl+bl) {j = 0;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(i<ml){pw.println(ms[j].getName()+","+ms[j].getCapture()+","+
-ms[j].getAppearPlace()+","+ms[j].getFriendoship()+","+ms[j].getImagePass()+","+0+","+
+if(i<cl){pw.println(ch[j].getName()+","+ch[j].getCapture()+","+
+ch[j].getAppearPlace()+","+ch[j].getFriendoship()+","+ch[j].getImagePass()+","+0+","+
 0+","+0+","+0+","+0+","+
 0+","+0+","+0+","+0);
 j++;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(ml<=i&i<ml+pl){pw.println(pr[j].getA()+","+pr[j].getC()+","+
-pr[j].getD()+","+pr[j].getE()+","+pr[j].getF()+","+pr[j].getG()+","+
-pr[j].getH()+","+pr[j].getI()+","+pr[j].getJ()+","+pr[j].getK()+","+
-pr[j].getL()+","+pr[j].getN()+","+pr[j].getM()+","+pr[j].getO());
-j++;}
+//if(ml<=i&i<ml+pl){pw.println(ba[j].getA()+","+ba[j].getC()+","+
+//ba[j].getD()+","+ba[j].getE()+","+ba[j].getF()+","+ba[j].getG()+","+
+//ba[j].getH()+","+ba[j].getI()+","+ba[j].getJ()+","+ba[j].getK()+","+
+//ba[j].getL()+","+ba[j].getN()+","+ba[j].getM()+","+ba[j].getO());
+//j++;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(i == tdl){
 System.out.println(i+"件のデータを保存しました");

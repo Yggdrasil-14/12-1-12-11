@@ -26,8 +26,8 @@ public class Home extends JFrame implements ActionListener{
 
 	Load ld = new Load();
 	//Save sv = new Save();
-	Character[] ms = new Character[Save.ml];
-	Bait[] pr = new Bait[Save.pl];
+	Character[] ms = new Character[Save.cl];
+	Bait[] pr = new Bait[Save.bl];
 	Time[] ti = new Time[Save.tl];
 	//LibraryDraw[] ld = new LibraryDraw[Save.ll];
 	String[][] str = new String[Save.tdl][Save.ec];
@@ -41,13 +41,13 @@ public class Home extends JFrame implements ActionListener{
 			int j = 0;
 			for(int i = 0;i<Save.tdl;i++) {
 				//
-				if(i==0||i==Save.ml||i==Save.ml+Save.pl||i==Save.ml+Save.pl+Save.tl) {j = 0;}
+				if(i==0||i==Save.cl||i==Save.cl+Save.bl||i==Save.cl+Save.bl+Save.tl) {j = 0;}
 				//Monster
-			if(i<Save.ml) {ms[j]=new Character(str[i]);j++;}
+			if(i<Save.cl) {ms[j]=new Character(str[i]);j++;}
 				//Porock
-				if(Save.ml<=i&i<Save.ml+Save.pl) {pr[j]=new Bait(str[i]);j++;}
+				if(Save.cl<=i&i<Save.cl+Save.bl) {pr[j]=new Bait(str[i]);j++;}
 				//Time
-				if(Save.ml+Save.pl<=i&i<Save.ml+Save.pl+Save.tl) {
+				if(Save.cl+Save.bl<=i&i<Save.cl+Save.bl+Save.tl) {
 					ti[j] = new Time(str[i]);j++;
 				}
 				//if(Save.ml+Save.pl+Save.tl<=i&i<Save.ml+Save.pl+Save.tl+Save.ll) {
