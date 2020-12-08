@@ -52,4 +52,14 @@ public class Bait {
 		public void useBait(int kind) {
 			numberOfBait[kind]--;
 		}
+		//’læ“¾
+		public String getName(int i) {
+			return name[i];
+		}
+		public int getNumberOfBait(int i) {
+			return numberOfBait[i];
+		}
+		public int getCompleteBonus(int i) {
+			return completeBonus[i];
+		}
 }

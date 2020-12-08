@@ -29,8 +29,8 @@ public class Home extends JFrame implements ActionListener{
 
 	Load ld = new Load();
 	Save sv = new Save();
-	Character[] ms = new Character[Save.ml];
-	Bait[] pr = new Bait[Save.pl];
+	Character[] ms = new Character[Save.cl];
+	Bait[] ba = new Bait[Save.bl];
 	Time[] ti = new Time[Save.tl];
 	//LibraryDraw[] ld = new LibraryDraw[Save.ll];
 	String[][] str = new String[Save.tdl][Save.ec];
@@ -44,24 +44,24 @@ public class Home extends JFrame implements ActionListener{
 			int j = 0;
 			for(int i = 0;i<Save.tdl;i++) {
 				//
-				if(i==0||i==Save.ml||i==Save.ml+Save.pl||i==Save.ml+Save.pl+Save.tl) {j = 0;}
+				if(i==0||i==Save.cl||i==Save.cl+Save.bl||i==Save.cl+Save.bl+Save.tl) {j = 0;}
 				//Monster
-			if(i<Save.ml) {ms[j]=new Character(str[i]);j++;}
+				if(i<Save.cl) {ms[j]=new Character(str[i]);j++;}
 				//Porock
-				if(Save.ml<=i&i<Save.ml+Save.pl) {pr[j]=new Bait(str[i]);j++;}
+				if(Save.cl<=i&i<Save.cl+Save.bl) {ba[j]=new Bait(str[i]);j++;}
 				//Time
-				if(Save.ml+Save.pl<=i&i<Save.ml+Save.pl+Save.tl) {
+				if(Save.cl+Save.bl<=i&i<Save.cl+Save.bl+Save.tl) {
 					ti[j] = new Time(str[i]);j++;
 				}
 				//if(Save.ml+Save.pl+Save.tl<=i&i<Save.ml+Save.pl+Save.tl+Save.ll) {
 					//ld[j] = new LibraryDraw(str[i]);j++;
 				//}
 			}
-				sv.save(ms,ba,ti);
+//			sv.save(ms,ba,ti);
 		}
 		public void OpenHome() {
 			this.setTitle("Home");
-			ms[0].practice();
+			
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setSize(480,620);
 			this.setLocationRelativeTo(null);
@@ -117,7 +117,7 @@ System.out.println("search");
 //int random = (int)(Math.random()*2);
 //switch(random) {
 //case 0:
-	//JOptionPane.showMessageDialog(null, "モンスターが出現中！！");
+	//JOptionPane.showMessageDialog(null, "モンスターが�現中��");
 	EF = new EncountFrame();
 	EF.OpenEncount(ms[MonRan(1)]);
 	main.Main.CloseH();
@@ -138,7 +138,8 @@ System.out.println("search");
 		JOptionPane.showMessageDialog(null, "polock");
 		}
 	else if(cmd.equals(save)) {
-		JOptionPane.showMessageDialog(null, "セーブ中、、、");
+		JOptionPane.showMessageDialog(null, "savenow");
+		sv.save(ms,ba,ti);
 		}
 }
 

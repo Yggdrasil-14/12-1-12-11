@@ -12,7 +12,7 @@ public class Character {
 
 	//コンストラクタ
 	public Character(String data[]){
-		//データを格納
+		//�ータを��
 		this.name=data[0];
 		this.capture=Integer.parseInt(data[1]);
 		this.partner=Integer.parseInt(data[2]);
@@ -23,9 +23,9 @@ public class Character {
 		this.limitOfReceiveBait=Integer.parseInt(data[7]);
 		limitOfReceiveBaitForReset=this.limitOfReceiveBait;
 		for(int i=0;i<Bait.baitKindNumber;i++) this.increaseValueOfReceiveBait[i]=Integer.parseInt(data[8+i]);
-		this.imagePass="src/charactor/Material/"+data[1]+".png";	//必要に応じて相対パス変更
+		this.imagePass="src/charactor/Material/"+data[1]+".png";	//�要に応じて相対パス変更
 	}
-	//ポロック付与上限セット
+	//ポロ�ク付与上限セ��
 	public void setLimitOfReceiveBait() {
 		Random randomValue=new Random();
 		int rand=randomValue.nextInt(5);
@@ -35,7 +35,7 @@ public class Character {
 		else changeValue=1;
 		limitOfReceiveBait+=changeValue;
 	}
-	//ポロック付与上限リセット
+	//ポロ�ク付与上限リセ��
 	public void resetLimitOfReceiveBait() {
 		limitOfReceiveBait=limitOfReceiveBaitForReset;
 	}
@@ -48,16 +48,16 @@ public class Character {
 		partner=0;
 	}
 
-	//好感度リセット
+	//好感度リセ��
 	public void resetLikability() {
 		likability=0;
 	}
-	//好感度上昇
+	//好感度上�
 	public void increaseLikability(int kind) {
 		likability+=increaseValueOfReceiveBait[kind];
 	}
 
-	//ゲットできるか判定
+	//ゲ�トできるか判�
 	public void judgeCanGet() {
 		if(requiredLikabilityToGet<likability) {
 			capture=1;
@@ -69,20 +69,20 @@ public class Character {
 		if(probabilityOfGet<rand) capture=1;
 	}
 
-	//なつき度上昇
-	//時間経過で上昇
+	//なつき度上�
+	//時間経過で上�
 	public void increaseFriendshipOverTime(int elapsedTime) {
 		if(partner==0) return;
 		if(friendship+elapsedTime<100) friendship+=elapsedTime;
 		else friendship=100;
 	}
-	//ポロックで上昇
+	//ポロ�クで上�
 	public void increaseFriendshipOverBait(int kind) {
 		if(friendship+increaseValueOfReceiveBait[kind]<100) friendship+=increaseValueOfReceiveBait[kind];
 		else friendship=100;
 	}
 
-	//データ値取得
+	//�ータ値取�
 	public String getName() {
 		return name;
 	}
@@ -101,7 +101,7 @@ public class Character {
 	public int getAppearPlace() {
 		return appearPlace;
 	}
-	public int getFriendoship() {
+	public int getFriendship() {
 		return friendship;
 	}
 	public int getLimitOfReceiveBait() {

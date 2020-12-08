@@ -35,4 +35,24 @@ public class Time {
 	public LocalDateTime getNowDateTime() {
 		return nowDateTime;
 	}
+	
+	//’lŽæ“¾
+		public int getNowYear() {
+			return nowDateTime.getYear();
+		}
+		public int getNowMonth() {
+			return nowDateTime.getMonthValue();
+		}
+		public int getNowDay() {
+			return nowDateTime.getDayOfMonth();
+		}
+		public int getNowHour() {
+			return nowDateTime.getHour();
+		}
+		public int getNowMinute() {
+			return nowDateTime.getMinute();
+		}
+		public int getNowSecond() {
+			return nowDateTime.getSecond();
+		}
 }
