@@ -5,14 +5,14 @@ import java.util.Random;
 import bait.Bait;
 
 public class Character {
-	//likability="DŠ´“x",friendship="‚È‚Â‚«“x"
+	//likability="å¥½æ„Ÿåº¦",friendship="ãªã¤ãåº¦"
 	private int capture,partner,appearPlace,likability,requiredLikabilityToGet,friendship,limitOfReceiveBait,limitOfReceiveBaitForReset;
 	private int increaseValueOfReceiveBait[]=new int[Bait.baitKindNumber];
 	private String name,imagePass;
 
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	public Character(String data[]){
-		//ƒf[ƒ^‚ğŠi”[
+		//ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 		this.name=data[0];
 		this.capture=Integer.parseInt(data[1]);
 		this.partner=Integer.parseInt(data[2]);
@@ -23,13 +23,13 @@ public class Character {
 		this.limitOfReceiveBait=Integer.parseInt(data[7]);
 		limitOfReceiveBaitForReset=this.limitOfReceiveBait;
 		for(int i=0;i<Bait.baitKindNumber;i++) this.increaseValueOfReceiveBait[i]=Integer.parseInt(data[8+i]);
-		this.imagePass="src/charactor/Material/"+data[1]+".png";	//•K—v‚É‰‚¶‚Ä‘Š‘ÎƒpƒX•ÏX
+		this.imagePass="src/charactor/Material/"+data[1]+".png";	//å¿…è¦ã«å¿œã˜ã¦ç›¸å¯¾ãƒ‘ã‚¹å¤‰æ›´
 	}
 	public void practice() {
 		System.out.println(name);
 	}
 
-	//ƒ|ƒƒbƒN•t—^ãŒÀƒZƒbƒg
+	//ãƒãƒ­ãƒƒã‚¯ä»˜ä¸ä¸Šé™ã‚»ãƒƒãƒˆ
 	public void setLimitOfReceiveBait() {
 		Random randomValue=new Random();
 		int rand=randomValue.nextInt(5);
@@ -39,12 +39,12 @@ public class Character {
 		else changeValue=1;
 		limitOfReceiveBait+=changeValue;
 	}
-	//ƒ|ƒƒbƒN•t—^ãŒÀƒŠƒZƒbƒg
+	//ãƒãƒ­ãƒƒã‚¯ä»˜ä¸ä¸Šé™ãƒªã‚»ãƒƒãƒˆ
 	public void resetLimitOfReceiveBait() {
 		limitOfReceiveBait=limitOfReceiveBaitForReset;
 	}
 
-	//‘Š–_•ÏX
+	//ç›¸æ£’å¤‰æ›´
 	public void makePartner() {
 		partner=1;
 	}
@@ -52,16 +52,16 @@ public class Character {
 		partner=0;
 	}
 
-	//DŠ´“xƒŠƒZƒbƒg
+	//å¥½æ„Ÿåº¦ãƒªã‚»ãƒƒãƒˆ
 	public void resetLikability() {
 		likability=0;
 	}
-	//DŠ´“xã¸
+	//å¥½æ„Ÿåº¦ä¸Šæ˜‡
 	public void increaseLikability(int kind) {
 		likability+=increaseValueOfReceiveBait[kind];
 	}
 
-	//ƒQƒbƒg‚Å‚«‚é‚©”»’è
+	//ã‚²ãƒƒãƒˆã§ãã‚‹ã‹åˆ¤å®š
 	public void judgeCanGet() {
 		if(requiredLikabilityToGet<likability) {
 			capture=1;
@@ -73,20 +73,20 @@ public class Character {
 		if(probabilityOfGet<rand) capture=1;
 	}
 
-	//‚È‚Â‚«“xã¸
-	//ŠÔŒo‰ß‚Åã¸
+	//ãªã¤ãåº¦ä¸Šæ˜‡
+	//æ™‚é–“çµŒéã§ä¸Šæ˜‡
 	public void increaseFriendshipOverTime(int elapsedTime) {
 		if(partner==0) return;
 		if(friendship+elapsedTime<100) friendship+=elapsedTime;
 		else friendship=100;
 	}
-	//ƒ|ƒƒbƒN‚Åã¸
+	//ãƒãƒ­ãƒƒã‚¯ã§ä¸Šæ˜‡
 	public void increaseFriendshipOverBait(int kind) {
 		if(friendship+increaseValueOfReceiveBait[kind]<100) friendship+=increaseValueOfReceiveBait[kind];
 		else friendship=100;
 	}
 
-	//ƒf[ƒ^’læ“¾
+	//ãƒ‡ãƒ¼ã‚¿å€¤å–å¾—
 	public String getName() {
 		return name;
 	}
@@ -100,7 +100,8 @@ public class Character {
 		return friendship;
 	}
 	public int getPartner() {
-		return partner;}
+		return partner;
+	}
 	public String getImagePass() {
 		return imagePass;
 	}
