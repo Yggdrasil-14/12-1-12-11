@@ -10,16 +10,33 @@ public class Load {
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader("saveFile1.txt"));
 			String line = null;
-			//�Z�[�u�f�[�^�̓ǂݍ���
+			//セーブデータの読み込み
 			for(int j=0;j<Save.tdl;j++) {
 				line = bf.readLine();
 				str[j] = line.split(",");
 			}
-			bf.close();//�ǂݍ��݂̃I�u�W�F�N�g�����
+			bf.close();//読み込みのオブジェクトを閉じる
 		}catch(FileNotFoundException e) {
 					System.out.println(e);
 				}catch(IOException e){
 					System.out.println(e);
 				}
 	}
+	public void firstLoad(String[][] str) {
+		try {
+			BufferedReader bf = new BufferedReader(new FileReader("saveFile2.txt"));
+			String line = null;
+			//セーブデータの読み込み
+			for(int j=0;j<Save.tdl;j++) {
+				line = bf.readLine();
+				str[j] = line.split(",");
+			}
+			bf.close();//読み込みのオブジェクトを閉じる
+		}catch(FileNotFoundException e) {
+					System.out.println(e);
+				}catch(IOException e){
+					System.out.println(e);
+				}
+	}
+
 }
