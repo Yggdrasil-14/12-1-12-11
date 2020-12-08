@@ -28,7 +28,7 @@ public class Home extends JFrame implements ActionListener{
 	 static LibraryMain Lframe;
 
 	Load ld = new Load();
-	//Save sv = new Save();
+	Save sv = new Save();
 	Character[] ms = new Character[Save.ml];
 	Bait[] pr = new Bait[Save.pl];
 	Time[] ti = new Time[Save.tl];
@@ -57,7 +57,7 @@ public class Home extends JFrame implements ActionListener{
 					//ld[j] = new LibraryDraw(str[i]);j++;
 				//}
 			}
-				//sv.save()
+				sv.save(ms,ba,ti);
 		}
 		public void OpenHome() {
 			this.setTitle("Home");
@@ -117,7 +117,7 @@ System.out.println("search");
 //int random = (int)(Math.random()*2);
 //switch(random) {
 //case 0:
-	//JOptionPane.showMessageDialog(null, "ƒ‚ƒ“ƒXƒ^[‚ªoŒ»’†II");
+	//JOptionPane.showMessageDialog(null, "ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå‡ºç¾ä¸­ï¼ï¼");
 	EF = new EncountFrame();
 	EF.OpenEncount(ms[MonRan(1)]);
 	main.Main.CloseH();
@@ -138,7 +138,7 @@ System.out.println("search");
 		JOptionPane.showMessageDialog(null, "polock");
 		}
 	else if(cmd.equals(save)) {
-		JOptionPane.showMessageDialog(null, "ƒZ[ƒu’†AAA");
+		JOptionPane.showMessageDialog(null, "ã‚»ãƒ¼ãƒ–ä¸­ã€ã€ã€");
 		}
 }
 
