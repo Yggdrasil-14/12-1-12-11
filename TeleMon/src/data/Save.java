@@ -5,48 +5,57 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import bait.Bait;
+import character.Character;
+import time.Time;
 
 public class Save {
 ////////////////////////////////////////////////////////////////////////////////////
 	public static final int ec = 16;//ElemntsCulumn
 ////////////////////////////////////////////////////////////////////////////////////
-	//保存データの数に変更があった場合に記述
-	public static final int tdl = 17;//TotalDataLines
-	public static final int ml = 13;//MonsterLines
-	public static final int pl = 3;//PorockLines
+	//菫晏ｭ倥ョ繝ｼ繧ｿ縺ｮ謨ｰ縺ｫ螟画峩縺後≠縺｣縺溷ｴ蜷医↓險倩ｿｰ
+	public static final int tdl = 14;//TotalDataLines
+	public static final int cl = 12;//CharacterLines
+	public static final int bl = 1;//BaitLines
 	public static final int tl = 1;//TimeLines
 	public static final int ll = 0;//LibraryDrawLines
-	public void save(Character ms[],Bait pr[]) {
-	Character cr = new Character("ma");
+	public void save(Character ch[],Bait ba[],Time ti[]) {//謨ｰ縺縺代ｏ縺九▲縺溘ｉ繧ｪ繝�繧ｱ繝ｼ
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 try {
-//ファイルの書き込みを行う
+//繝輔ぃ繧､繝ｫ縺ｮ譖ｸ縺崎ｾｼ縺ｿ繧定｡後≧
 PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("saveFile1.txt")));
 int j = 0;
 for(int i = 0;i<=tdl;i++) {
-if(i==0||i==ml||i==ml+pl) {j = 0;}
+if(i==0||i==cl||i==cl+bl) {j = 0;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(i<ml){pw.println(ms[j].getName()+","+ms[j].getCapture()+","+
-ms[j].getAppearPlace()+","+ms[j].getFriendoship()+","+ms[j].getImagePass()+","+0+","+
-0+","+0+","+0+","+0+","+
+if(i<cl){pw.println(ch[j].getName()+","+ch[j].getCapture()+","+
+ch[j].getPartner()+","+ch[j].getAppearPlace()+","+ch[j].getLikability()+","+
+ch[j].getRequiredLikabilityToGet()+","+ch[j].getFriendoship()+","+ch[j].getLimitOfReceiveBait()+","+
+ch[j].getIncreaseValueOfReceiveBait()+","+0+","+0);
+j++;}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if(cl<=i&i<cl+bl){pw.println(ba[j].getName(0)+","+ba[j].getName(1)+","+
+ba[j].getName(2)+","+ba[j].getName(3)+","+ba[j].getName(4)+","+ba[j].getName(5)+","+
+ba[j].getNumberOfBait(0)+";"+ba[j].getNumberOfBait(1)+";"+ba[j].getNumberOfBait(2)+";"+
+ba[j].getNumberOfBait(3)+";"+ba[j].getNumberOfBait(4)+";"+ba[j].getNumberOfBait(5)+";"+
+ba[j].getCompleteBonus(0)+","+ba[j].getCompleteBonus(1)+","+
+ba[j].getCompleteBonus(2)+","+ba[j].getCompleteBonus(3)+",");
+j++;}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if(cl+bl<=i&i<cl+bl+tl){pw.println(ti[j].getNowYear()+","+ti[j].getNowMonth()+","+
+ti[j].getNowDay()+","+ti[j].getNowHour()+","+ti[j].getNowMinute()+","+ti[j].getNowSecond()+","+
+0+","+0+","+0+","+0+","+0+","+0+","+
 0+","+0+","+0+","+0);
 j++;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(ml<=i&i<ml+pl){pw.println(pr[j].getA()+","+pr[j].getC()+","+
-pr[j].getD()+","+pr[j].getE()+","+pr[j].getF()+","+pr[j].getG()+","+
-pr[j].getH()+","+pr[j].getI()+","+pr[j].getJ()+","+pr[j].getK()+","+
-pr[j].getL()+","+pr[j].getN()+","+pr[j].getM()+","+pr[j].getO());
-j++;}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(i == tdl){
-System.out.println(i+"件のデータを保存しました");
+System.out.println(i+"Data of Save");
 break;}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
-pw.close();//ファイルを閉じる
+pw.close();//繝輔ぃ繧､繝ｫ繧帝哩縺倥ｋ
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }catch(Exception ee) {
-System.out.println("例外処理");
+System.out.println(ee);
 }
 }
 }
