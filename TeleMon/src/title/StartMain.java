@@ -10,12 +10,12 @@ import javax.swing.JPanel;
 public class StartMain extends JFrame {
 	public void startWindow() {
 
-		//setDefaultCloseOperation(EXIT_ON_CLOSE);//閉じるボタンの処理
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);//閉じる�タンの処�
 		setSize(600,620);//ウィンドウサイズ
 		setLocationRelativeTo(null);//画面中央に配置
 		setResizable(false);//リサイズ禁止
 		setVisible(true);//ウィンドウ表示
-		setDefaultCloseOperation(EXIT_ON_CLOSE);//閉じるボタンの処理
+		setDefaultCloseOperation(EXIT_ON_CLOSE);//閉じる�タンの処�
 
 		JLabel label = new JLabel("start!!!");
 

@@ -1,44 +1,15 @@
 package main;
 
-import home.Home;
-import library.LibraryDraw;
-import title.TitleMain;
+import library.LibraryMain;
 
 
 public class Main {
 
-	 static TitleMain Tframe;
-	 static Home home;
-	 //static LibraryMain Lframe;
-	 static LibraryDraw LD;
-
-
   public static void main(String[] args) {
+	
+	  LibraryMain Lframe = new LibraryMain("図鑑",480,620);
 
-    Tframe = new TitleMain();
-    home = new Home();
-	 // LD =new LibraryDraw();
-	  //Lframe.add(LD);
-
-    Tframe.OpenTitle();
-	Tframe.setVisible(true);
+	  Lframe.setVisible(true);	  
 
   }
-
-  /////////////ウィンドウオープナー////////////////////////////////
-  public static void OpenH() {
-	  Tframe.setVisible(false);
-	  home.OpenHome();
-	  home.setVisible(true);
-  }
-  public static void OpenL() {
-	  home.setVisible(false);
-	 // Lframe.setVisible(true);
-  }
-  public static void CloseH() {
-	  home.setVisible(false);
-
-  }
-
-
 }

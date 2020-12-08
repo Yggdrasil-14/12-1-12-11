@@ -1,48 +1,69 @@
 package title;
 
-import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-
-public class TitleMain extends JFrame implements ActionListener{
-	public void OpenTitle() {
-		this.setTitle("�e������!!");
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setSize(480,620);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
 
 
-		JLayeredPane pane = new JLayeredPane();
-		
-		TitleDraw TD = new TitleDraw();
-		TD.setBounds(0,0,480,620);
-		Container contentPane = getContentPane();
+public class TitleMain extends JFrame {
+	public TitleMain(String title, int width, int height) {
+		super(title);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(width,height);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		// ラベルのインスタンスを生成
 
-		JButton btn1 = new JButton("GAME START!!");
-		btn1.addActionListener(this);
-		//contentPane.setLayout(null);
-		btn1.setBounds(480/5,570,300,20);
-		pane.add(btn1);
-		pane.add(TD);
-		pane.setLayer(btn1, 50);
-		pane.setLayer(TD, 49);
-		contentPane.add(pane);
+
 
 	}
-
-	public void actionPerformed(ActionEvent event){
-		System.out.println("bottn press");
-		main.Main.OpenH();
-
-		}
-
-
-
+//	JFrame mainFrame = new JFrame("タイトル");
+//
+//public TitleMain(){
+//
+//		 mainFrame.setDefaultCloseOperation(mainFrame.EXIT_ON_CLOSE);//閉じるボタンの処理
+//		 mainFrame.setSize(480,620);//ウィンドウサイズ
+//		 mainFrame.setLocationRelativeTo(null);//画面中央に配置
+//		 mainFrame.setResizable(false);//リサイズ禁止
+//
+//
+//		 Container contentPane = mainFrame.getContentPane();
+//							// ラベルのインスタンスを生成
+//							JLabel label = new JLabel("title");
+//							label.setHorizontalAlignment(SwingConstants.CENTER);
+//							// ボタンのインスタンスを生成
+//							JButton button = new JButton("Press here...");
+//              button.addActionListener(this);
+//
+//						 // ラベルをContentPaneに配置
+//						 contentPane.add(label, BorderLayout.CENTER);
+//						 // ボタンをContentPaneに配置
+//						 contentPane.add(button, BorderLayout.SOUTH);
+//
+//						 mainFrame.setVisible(true);//ウィンドウ表示
+//
+//}
+//
+//public void halo(){
+//
+//	System.out.println("ハローー");
+//
+//}
+//
+//
+//public void actionPerformed1(ActionEvent event){
+//
+//mainFrame.setVisible(false);
+//StartMain Sframe = new StartMain();//インスタンス化
+//
+//Sframe.startWindow();
+//
+//
+//}
+//
+//@Override
+//public void actionPerformed(ActionEvent e) {
+//	// TODO 自動生成されたメソッド・スタブ
+//
+//}
 
 }
 

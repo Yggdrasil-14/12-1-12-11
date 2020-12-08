@@ -7,19 +7,19 @@ public class Time {
 	private LocalDateTime nowDateTime,previousDateTime;
 	private int year,month,date,hour,minute,second;
 
-	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	public Time(String[] str){
 		//previousDateTime=recordDate;
 		nowDateTime=LocalDateTime.now();
 	}
 
-	//å€¤æ›´æ–°
+	//’lXV
 	public void updateDateTime() {
 		previousDateTime=nowDateTime;
 		nowDateTime=LocalDateTime.now();
 	}
 
-	//æ™‚é–“ã®å·®åˆ†ç®—å‡º
+	//ŠÔ‚Ì·•ªZo
 	public int getDifferenceValue() {
 		long differenceValue;
 		differenceValue=ChronoUnit.SECONDS.between(previousDateTime,nowDateTime);
@@ -31,27 +31,8 @@ public class Time {
 		return (int)differenceValue;
 	}
 
-	//å€¤å–å¾—
+	//’læ“¾
 	public LocalDateTime getNowDateTime() {
 		return nowDateTime;
-	}
-	//å€¤å–å¾—
-	public int getNowYear() {
-		return nowDateTime.getYear();
-	}
-	public int getNowMonth() {
-		return nowDateTime.getMonthValue();
-	}
-	public int getNowDay() {
-		return nowDateTime.getDayOfMonth();
-	}
-	public int getNowHour() {
-		return nowDateTime.getHour();
-	}
-	public int getNowMinute() {
-		return nowDateTime.getMinute();
-	}
-	public int getNowSecond() {
-		return nowDateTime.getSecond();
 	}
 }
