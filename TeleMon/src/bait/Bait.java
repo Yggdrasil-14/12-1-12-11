@@ -7,22 +7,22 @@ public class Bait {
 	private String name[]=new String[baitKindNumber];
 	private int numberOfBait[]=new int[baitKindNumber];
 	private int completeBonus[]=new int[completeBonusNumber];
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	public Bait(String data[]) {
 		for(int i=0;i<baitKindNumber;i++) this.name[i]=data[i];
 		for(int i=0;i<baitKindNumber;i++) this.numberOfBait[i]=Integer.parseInt(data[baitKindNumber+i]);
 		for(int i=0;i<completeBonusNumber;i++) this.completeBonus[i]=Integer.parseInt(data[baitKindNumber*2+i]);
 	}
-	//ƒ‚ƒ“ƒXƒ^[ƒQƒbƒgƒ{[ƒiƒX
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒ¼ãƒŠã‚¹
 	public void monsterGetBonus() {
 		increaseBait(2);
 	}
 
-	//‚È‚Â‚«“xƒ}ƒbƒNƒXƒ{[ƒiƒX
+	//ãªã¤ãåº¦ãƒãƒƒã‚¯ã‚¹ãƒœãƒ¼ãƒŠã‚¹
 	public void friendshipMaxBonus() {
 		increaseBait(5);
 	}
-	//}ŠÓƒRƒ“ƒvƒŠ[ƒg—¦ƒ{[ƒiƒX
+	//å›³é‘‘ã‚³ãƒ³ãƒ—ãƒªãƒ¼ãƒˆç‡ãƒœãƒ¼ãƒŠã‚¹
 	public void libraryCompleteBonus(int completeRate) {
 		if(completeBonus[0]==0&&completeRate>25) {
 			increaseBait(2);
@@ -41,15 +41,25 @@ public class Bait {
 			completeBonus[3]=1;
 		}
 	}
-	//ƒ|ƒƒbƒN‘‰Á
+	//ãƒãƒ­ãƒƒã‚¯å¢—åŠ 
 		public void increaseBait(int elapsedTime) {
 			for(int i=0;i<baitKindNumber;i++) {
 				if(numberOfBait[i]+elapsedTime<10) numberOfBait[i]+=elapsedTime;
 				else numberOfBait[i]=10;
 			}
 		}
-		//ƒ|ƒƒbƒNÁ”ï
+		//ãƒãƒ­ãƒƒã‚¯æ¶ˆè²»
 		public void useBait(int kind) {
 			numberOfBait[kind]--;
 		}
+	//å€¤å–å¾—
+	public String getName(int i) {
+		return name[i];
+	}
+	public int getNumberOfBait(int i) {
+		return numberOfBait[i];
+	}
+	public int getCompleteBonus(int i) {
+		return completeBonus[i];
+	}
 }
