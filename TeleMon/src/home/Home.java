@@ -13,7 +13,9 @@ import bait.Bait;
 import character.Character;
 import data.Load;
 import data.Save;
+import encount.DesertFrame;
 import encount.EncountFrame;
+import encount.WatersideFrame;
 import library.LibraryMain;
 import time.Time;
 
@@ -24,7 +26,13 @@ public class Home extends JFrame implements ActionListener{
 	public static final String library = "library";
 	public static final String polock = "polock";
 	public static final String save = "save";
+	public static final String Meadow = "Meadow";
+	public static final String Waterside = "Waterside";
+	public static final String Desert = "Desert";
+	
 	 static EncountFrame EF;
+	static WatersideFrame WF;
+	 static DesertFrame DF;
 	 static LibraryMain Lframe;
 
 	Load ld = new Load();
@@ -77,30 +85,48 @@ public class Home extends JFrame implements ActionListener{
 			JButton btn2 = new JButton("library");
 			JButton btn3 = new JButton("polock");
 			JButton btn4 = new JButton("save");
+			JButton btn5 = new JButton("Meadow");
+			JButton btn6 = new JButton("Waterside");
+			JButton btn7 = new JButton("Desert");
 
 			btn1.setActionCommand(search);
 			btn1.addActionListener(this);
 			btn2.setActionCommand(library);
-            btn2.addActionListener(this);
-            btn3.setActionCommand(polock);
-            btn3.addActionListener(this);
-            btn4.setActionCommand(save);
-            btn4.addActionListener(this);
+            		btn2.addActionListener(this);
+            		btn3.setActionCommand(polock);
+            		btn3.addActionListener(this);
+            		btn4.setActionCommand(save);
+            		btn4.addActionListener(this);
+			btn5.setActionCommand(Meadow);
+            		btn5.addActionListener(this);
+            		btn6.setActionCommand(Waterside);
+            		btn6.addActionListener(this);
+            		btn7.setActionCommand(Desert);
+            		btn7.addActionListener(this);
 
 
 			btn1.setBounds(60,570,80,20);
 			btn2.setBounds(150,570,80,20);
 			btn3.setBounds(240,570,80,20);
 			btn4.setBounds(330,570,80,20);
+			btn5.setBounds(150,540,80,20);
+			btn6.setBounds(240,540,80,20);
+			btn7.setBounds(330,540,80,20);
 
 			pane.add(btn1);
 			pane.add(btn2);
 			pane.add(btn3);
 			pane.add(btn4);
+			pane.add(btn5);
+			pane.add(btn6);
+			pane.add(btn7);
 			pane.setLayer(btn1, 50);
 			pane.setLayer(btn2, 51);
 			pane.setLayer(btn3, 52);
 			pane.setLayer(btn4, 53);
+			pane.setLayer(btn5, 51);
+			pane.setLayer(btn6, 52);
+			pane.setLayer(btn7, 53);
 			pane.add(HL);
 			pane.setLayer(HL, 42);
 			contentPane.add(pane);
@@ -117,11 +143,8 @@ System.out.println("search");
 //int random = (int)(Math.random()*2);
 //switch(random) {
 //case 0:
-	//JOptionPane.showMessageDialog(null, "モンスターが�現中��");
-	EF = new EncountFrame();
-	EF.OpenEncount(ms[MonRan(1)]);
-	main.Main.CloseH();
-	EF.setVisible(true);
+	//JOptionPane.showMessageDialog(null, "銉€兂銈广偪銉笺亴搴鐝句腑技");
+	JOptionPane.showMessageDialog(null,"search");
 
 //break;
 
@@ -130,31 +153,56 @@ System.out.println("search");
 //break;}
 }
 	else if(cmd.equals(library)) {
-		System.out.println("press bottun");
+		System.out.println("library");
 		 Lframe = new LibraryMain("ZUKAN",480,620,ms);
+		Lframe.setVisible(true);
 		main.Main.CloseH();
-		Lframe.setVisible(true);}
+		}
 	else if(cmd.equals(polock)) {
 		JOptionPane.showMessageDialog(null, "polock");
 		}
 	else if(cmd.equals(save)) {
-		JOptionPane.showMessageDialog(null, "savenow");
-		sv.save(ms,ba,ti);
+		JOptionPane.showMessageDialog(null, "セーブ中、、、");
+		}
+	else if(cmd.equals(Meadow)) {
+		JOptionPane.showMessageDialog(null, "草原エリアに移動します");
+		EF = new EncountFrame();
+		EF.OpenEncount(ms[MonRan(1)]);
+		main.Main.CloseH();
+		EF.setVisible(true);
+		}
+	else if(cmd.equals(Waterside)) {
+		JOptionPane.showMessageDialog(null, "水辺エリアに移動します");
+		WF = new WatersideFrame();
+		WF.OpenWaterside(ms[MonRan(2)]);
+		main.Main.CloseH();
+		WF.setVisible(true);
+		}
+	else if(cmd.equals(Desert)) {
+		JOptionPane.showMessageDialog(null, "砂漠エリアに移動します");
+		DF = new DesertFrame();
+		DF.OpenDesert(ms[MonRan(3)]);
+		main.Main.CloseH();
+		DF.setVisible(true);
 		}
 }
 
 	public int MonRan(int d) {
 		int random = 0;
 		if(d == 1) {
-		random = 5;}//(int)(Math.random()*5);}
+		random = (int)(Math.random()*5);}
 		if(d == 2) {
-			random = (int)(Math.random()*4 +5);}
+		random = (int)(Math.random()*4 +5);}
 		if(d == 3) {
-				random = (int)(Math.random()*3 +9);
+		random = (int)(Math.random()*3 +9);
 		}
 		return random;
 
 		}
+	public static void CloseE() {EF.setVisible(false);}
+	public static void CloseW() {WF.setVisible(false);}
+	public static void CloseD() {DF.setVisible(false);}
+	public static void CloseL() {Lframe.setVisible(false);}
 	}
 
 
