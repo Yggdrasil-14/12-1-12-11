@@ -25,10 +25,6 @@ public class Character {
 		for(int i=0;i<Bait.baitKindNumber;i++) this.increaseValueOfReceiveBait[i]=Integer.parseInt(data[8+i]);
 		this.imagePass="src/charactor/Material/"+data[1]+".png";	//必要に応じて相対パス変更
 	}
-	public void practice() {
-		System.out.println(name);
-	}
-
 	//ポロック付与上限セット
 	public void setLimitOfReceiveBait() {
 		Random randomValue=new Random();
