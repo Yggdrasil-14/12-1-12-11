@@ -93,14 +93,28 @@ public class Character {
 	public int getCapture() {
 		return capture;
 	}
+	public int getPartner() {
+		return partner;
+	}
+	public int getLikability() {
+		return likability;
+	}
+	public int getRequiredLikabilityToGet() {
+		return requiredLikabilityToGet;
+	}
 	public int getAppearPlace() {
 		return appearPlace;
 	}
-	public int getFriendship() {
+	public int getFriendoship() {
 		return friendship;
 	}
-	public int getPartner() {
-		return partner;
+	public int getLimitOfReceiveBait() {
+		return limitOfReceiveBait;
+	}
+	public String getIncreaseValueOfReceiveBait(){
+		return increaseValueOfReceiveBait[0]+","+increaseValueOfReceiveBait[1]+","+
+				increaseValueOfReceiveBait[2]+","+increaseValueOfReceiveBait[3]+","+
+				increaseValueOfReceiveBait[4]+","+increaseValueOfReceiveBait[5];
 	}
 	public String getImagePass() {
 		return imagePass;
