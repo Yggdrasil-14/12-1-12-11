@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.UIManager;
 
+import character.Character;
+
 	public class EncountFrame extends JFrame implements ActionListener{
 
 		public static final String run = "run";
@@ -30,7 +32,7 @@ import javax.swing.UIManager;
 		JLabel anc = new JLabel();
 		
 		
-		public void OpenEncount() {
+		public void OpenEncount(Character c) {
 	  //public void OpenEncount(Charactor c)
 			try {
 			    UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
@@ -38,36 +40,16 @@ import javax.swing.UIManager;
 			            e.printStackTrace();
 			 }
 			
-			String name =null;
-			
 			this.setTitle("草原エリア");
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setSize(480,620);
 			this.setLocationRelativeTo(null);
 			this.setResizable(false);
-			int random = (int)(Math.random()*4);//モンスターの数4ひき
-			switch(random) {
-
-			case 0:
-				name = "オロチ";
-			break;
-
-			case 1:
-				name = "フォックステール";
-			break;
-
-			case 2:
-				name = "レッドイーグル";
-			break;
-
-			case 3:
-				name = "シロウサギ";
-			break;
-			}
-			EncountLayout EL = new EncountLayout(name);
+			
+			EncountLayout EL = new EncountLayout(c.getName());
 			EL.setBounds(0,0,480,620);
 			JLayeredPane pane = new JLayeredPane();
-			JLabel label = new JLabel(name);
+			JLabel label = new JLabel(c.getName());
 			label.setBounds(280,250,300,30);
 			label.setFont(new Font("HGP創英角ﾎﾟｯﾌﾟ体", Font.ITALIC, 20));
 	        label.setForeground(Color.BLUE);
@@ -161,7 +143,9 @@ import javax.swing.UIManager;
 			String cmd = event.getActionCommand();
 
 			if(cmd.equals(run)) {
-		main.Main.OpenH();}
+		main.Main.OpenH();
+		
+			}
 			else if(cmd.equals(sweet)) {
 		    anc.setText("sweetを投げた！！！");
 		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

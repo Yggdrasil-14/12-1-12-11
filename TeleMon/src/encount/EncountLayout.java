@@ -8,37 +8,19 @@ import javax.swing.JPanel;
 
 public class EncountLayout extends JPanel{
 	public String name;
+	
 	public EncountLayout(String name) {
-		
+
 		this.name = name;
-		
+
 	}
-	
-	
+
+
 		public void paintComponent(Graphics g) {
 
-			
-//			int random = (int)(Math.random()*4);//モンスターの数4ひき
-//			switch(random) {
-//
-//			case 0:
-//				name = "オロチ";
-//			break;
-//
-//			case 1:
-//				name = "レインボースライム";;
-//			break;
-//
-//			case 2:
-//				name = "レッドイーグル";;
-//			break;
-//
-//			case 3:
-//				name = "シロウサギ";;
-//			break;
-//			}
+
 			Image grass = Toolkit.getDefaultToolkit().getImage("img/Grass.png");
-			Image cat = Toolkit.getDefaultToolkit().getImage("src/charactor/Material/" + name + ".png");
+			Image cat = Toolkit.getDefaultToolkit().getImage("src/character/Material/" + name + ".png");
 			super.paintComponent(g);
 
 			g.drawImage(grass, 0, 0, 480,620,this);

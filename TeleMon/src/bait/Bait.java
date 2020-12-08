@@ -3,28 +3,25 @@ package bait;
 public class Bait {
 	public static final int baitKindNumber=6;
 	public static final int completeBonusNumber=4;
-	
+
 	private String name[]=new String[baitKindNumber];
 	private int numberOfBait[]=new int[baitKindNumber];
 	private int completeBonus[]=new int[completeBonusNumber];
-	
 	//コンストラクタ
 	public Bait(String data[]) {
 		for(int i=0;i<baitKindNumber;i++) this.name[i]=data[i];
 		for(int i=0;i<baitKindNumber;i++) this.numberOfBait[i]=Integer.parseInt(data[baitKindNumber+i]);
 		for(int i=0;i<completeBonusNumber;i++) this.completeBonus[i]=Integer.parseInt(data[baitKindNumber*2+i]);
 	}
-	
 	//モンスターゲットボーナス
 	public void monsterGetBonus() {
 		increaseBait(2);
 	}
-	
+
 	//なつき度マックスボーナス
 	public void friendshipMaxBonus() {
 		increaseBait(5);
 	}
-	
 	//図鑑コンプリート率ボーナス
 	public void libraryCompleteBonus(int completeRate) {
 		if(completeBonus[0]==0&&completeRate>25) {
@@ -44,27 +41,15 @@ public class Bait {
 			completeBonus[3]=1;
 		}
 	}
-	
 	//ポロック増加
-	public void increaseBait(int elapsedTime) {
-		for(int i=0;i<baitKindNumber;i++) {
-			if(numberOfBait[i]+elapsedTime<10) numberOfBait[i]+=elapsedTime;
-			else numberOfBait[i]=10;
+		public void increaseBait(int elapsedTime) {
+			for(int i=0;i<baitKindNumber;i++) {
+				if(numberOfBait[i]+elapsedTime<10) numberOfBait[i]+=elapsedTime;
+				else numberOfBait[i]=10;
+			}
 		}
-	}
-	//ポロック消費
-	public void useBait(int kind) {
-		numberOfBait[kind]--;
-	}
-	
-	//値取得
-	public String getName(int i) {
-		return name[i];
-	}
-	public int getNumberOfBait(int i) {
-		return numberOfBait[i];
-	}
-	public int getCompleteBonus(int i) {
-		return completeBonus[i];
-	}
+		//ポロック消費
+		public void useBait(int kind) {
+			numberOfBait[kind]--;
+		}
 }

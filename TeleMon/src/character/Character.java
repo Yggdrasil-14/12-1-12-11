@@ -96,9 +96,11 @@ public class Character {
 	public int getAppearPlace() {
 		return appearPlace;
 	}
-	public int getFriendoship() {
+	public int getFriendship() {
 		return friendship;
 	}
+	public int getPartner() {
+		return partner;}
 	public String getImagePass() {
 		return imagePass;
 	}
