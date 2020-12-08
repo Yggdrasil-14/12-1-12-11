@@ -11,4 +11,4 @@ BluePython,0,0,3,0,10,0,5,0,5,3,-1,-1,5,0,0
 RedScorpion,0,0,3,0,15,0,6,0,-3,-3,5,1,5,0,0
 DesertHopper,0,0,3,0,25,0,6,5,-3,3,-3,-3,5,0,0
 SweetPorock,BitterPorock,SpicyPorock,SourPorock,AstringentPorock,RainbowPorock,3,3,3,3,3,3,0,0,0,0
-2020,12,8,15,15,56,0,0,0,0,0,0,0,0,0,0
+2020,12,8,14,53,56,0,0,0,0,0,0,0,0,0,0
