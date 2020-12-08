@@ -17,7 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.UIManager;
 
 import character.Character;
-
+import home.Home;
 	public class EncountFrame extends JFrame implements ActionListener{
 
 		public static final String run = "run";
@@ -52,13 +52,13 @@ import character.Character;
 			JLabel label = new JLabel(c.getName());
 			label.setBounds(280,250,300,30);
 			label.setFont(new Font("HGPënâpäpŒﬂØÃﬂëÃ", Font.ITALIC, 20));
-	        label.setForeground(Color.BLUE);
+	        label.setForeground(Color.WHITE);
 	       
 
 			anc.setBounds(20,ÇT,300,50);
 			anc.setBackground(Color.PINK);
 			anc.setFont(new Font("HGPënâpäpŒﬂØÃﬂëÃ", Font.ITALIC, 20));
-	        anc.setForeground(Color.BLUE);
+	        anc.setForeground(Color.WHITE);
 			
 			Container contentPane = getContentPane();
 
@@ -144,7 +144,7 @@ import character.Character;
 
 			if(cmd.equals(run)) {
 		main.Main.OpenH();
-		
+		Home.CloseE();
 			}
 			else if(cmd.equals(sweet)) {
 		    anc.setText("sweetÇìäÇ∞ÇΩÅIÅIÅI");
