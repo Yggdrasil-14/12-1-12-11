@@ -87,7 +87,7 @@ public class LibraryMain extends JFrame implements ActionListener{
 			else if(LD.page == 7){}
 			else if(cmd.equals(GoHome)) {
 				main.Main.OpenH();
-
+				home.Home.CloseL();
 					}
 		}
 

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class EncountLayout extends JPanel{
 	public String name;
-	
+
 	public EncountLayout(String name) {
 
 		this.name = name;
@@ -20,12 +20,12 @@ public class EncountLayout extends JPanel{
 
 
 			Image grass = Toolkit.getDefaultToolkit().getImage("img/Grass.png");
-			Image cat = Toolkit.getDefaultToolkit().getImage("src/character/Material/" + name + ".png");
+			Image monster = Toolkit.getDefaultToolkit().getImage("src/character/Material/" + name + ".png");
 			super.paintComponent(g);
 
 			g.drawImage(grass, 0, 0, 480,620,this);
 			//grass.setBounds();
-			g.drawImage(cat, 200, 50,480/3,620/3, this);
+			g.drawImage(monster, 200, 50,480/2,620/3, this);
 		}
 
 

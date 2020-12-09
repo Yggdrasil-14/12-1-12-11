@@ -58,16 +58,16 @@ public class Character {
 	}
 
 	//ゲ�トできるか判�
-	public void judgeCanGet() {
-		if(requiredLikabilityToGet<likability) {
-			capture=1;
-			return;
-		}
-		Random randomValue=new Random();
-		int rand=randomValue.nextInt(100);
-		int probabilityOfGet=100*likability/requiredLikabilityToGet*4/5;
-		if(probabilityOfGet<rand) capture=1;
-	}
+//	public void judgeCanGet() {
+//		if(requiredLikabilityToGet<likability) {
+//			capture=1;
+//			return;
+//		}
+//		Random randomValue=new Random();
+//		int rand=randomValue.nextInt(100);
+//		int probabilityOfGet=100*likability/requiredLikabilityToGet*4/5;
+//		if(probabilityOfGet<rand) capture=1;
+//	}
 
 	//なつき度上�
 	//時間経過で上�
@@ -86,32 +86,86 @@ public class Character {
 	public String getName() {
 		return name;
 	}
+	public void setName(String name) {
+		this.name=name;
+	}
 	public int getCapture() {
 		return capture;
+	}
+	public void setCapture() {
+		capture = 1;
+	}
+	public void setCapture(int capture) {
+		this.capture = capture;
 	}
 	public int getPartner() {
 		return partner;
 	}
+	public void setPartner(int partner) {
+		this.partner=partner;
+	}
 	public int getLikability() {
 		return likability;
+	}
+	public void setLikability(int likability) {
+		this.likability=likability;
 	}
 	public int getRequiredLikabilityToGet() {
 		return requiredLikabilityToGet;
 	}
+	public void setRequiredLikabilityToGet(int requiredLikabilityToGet) {
+		this.requiredLikabilityToGet=requiredLikabilityToGet;
+	}
 	public int getAppearPlace() {
 		return appearPlace;
+	}
+	public void setAppearPlace(int appearPlace) {
+		this.appearPlace=appearPlace;
 	}
 	public int getFriendship() {
 		return friendship;
 	}
+	public void setFriendship(int friendship) {
+		this.friendship=friendship;
+	}
 	public int getLimitOfReceiveBait() {
 		return limitOfReceiveBait;
+	}
+	public void setLimitOfReceiveBait(int limitOfReceiveBait) {
+		this.limitOfReceiveBait=limitOfReceiveBait;
 	}
 	public String getIncreaseValueOfReceiveBait(){
 		return increaseValueOfReceiveBait[0]+","+increaseValueOfReceiveBait[1]+","+
 				increaseValueOfReceiveBait[2]+","+increaseValueOfReceiveBait[3]+","+
 				increaseValueOfReceiveBait[4]+","+increaseValueOfReceiveBait[5];
 	}
+	public void setIncreaseValueOfReceiveBait(int a,int b,int c,int d,int e,int f) {
+		this.increaseValueOfReceiveBait[0]= a;
+		this.increaseValueOfReceiveBait[1]= b;
+		this.increaseValueOfReceiveBait[2]= c;
+		this.increaseValueOfReceiveBait[3]= d;
+		this.increaseValueOfReceiveBait[4]= e;
+		this.increaseValueOfReceiveBait[5]= f;
+	}
+	public int getIncreaseValueOfReceiveBait0() {
+		return increaseValueOfReceiveBait[0];
+	}
+	public int getIncreaseValueOfReceiveBait1() {
+		return increaseValueOfReceiveBait[1];
+	}
+	public int getIncreaseValueOfReceiveBait2() {
+		return increaseValueOfReceiveBait[2];
+	}
+	public int getIncreaseValueOfReceiveBait3() {
+		return increaseValueOfReceiveBait[3];
+	}
+	public int getIncreaseValueOfReceiveBait4() {
+		return increaseValueOfReceiveBait[4];
+	}
+	public int getIncreaseValueOfReceiveBait5() {
+		return increaseValueOfReceiveBait[5];
+	}
+
 	public String getImagePass() {
 		return imagePass;
 	}

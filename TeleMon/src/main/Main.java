@@ -1,5 +1,7 @@
 package main;
 
+import bait.Bait;
+import character.Character;
 import home.Home;
 import library.LibraryDraw;
 import title.TitleMain;
@@ -29,6 +31,11 @@ public class Main {
   public static void OpenH() {
 	  Tframe.setVisible(false);
 	  home.OpenHome();
+	  home.setVisible(true);
+  }
+  public static void OpenH(Character ch[],Bait ba[]) {
+	  Tframe.setVisible(false);
+	  home.OpenHome(ch,ba);
 	  home.setVisible(true);
   }
   public static void OpenL() {

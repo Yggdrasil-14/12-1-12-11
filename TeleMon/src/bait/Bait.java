@@ -56,10 +56,19 @@ public class Bait {
 		public String getName(int i) {
 			return name[i];
 		}
+		public void setName(int i,String name) {
+			this.name[i]=name;
+		}
 		public int getNumberOfBait(int i) {
 			return numberOfBait[i];
 		}
+		public void setNumberOfBait(int i,int numberOfBait) {
+			this.numberOfBait[i]=numberOfBait;
+		}
 		public int getCompleteBonus(int i) {
 			return completeBonus[i];
+		}
+		public void setCompleteBonus(int i,int completeBonus) {
+			this.completeBonus[i]=completeBonus;
 		}
 }
