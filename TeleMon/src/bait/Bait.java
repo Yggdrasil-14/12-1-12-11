@@ -52,6 +52,7 @@ public class Bait {
 		public void useBait(int kind) {
 			numberOfBait[kind]--;
 		}
+		
 		//’læ“¾
 		public String getName(int i) {
 			return name[i];

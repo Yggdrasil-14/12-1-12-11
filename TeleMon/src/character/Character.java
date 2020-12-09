@@ -57,18 +57,6 @@ public class Character {
 		likability+=increaseValueOfReceiveBait[kind];
 	}
 
-	//ゲ�トできるか判�
-//	public void judgeCanGet() {
-//		if(requiredLikabilityToGet<likability) {
-//			capture=1;
-//			return;
-//		}
-//		Random randomValue=new Random();
-//		int rand=randomValue.nextInt(100);
-//		int probabilityOfGet=100*likability/requiredLikabilityToGet*4/5;
-//		if(probabilityOfGet<rand) capture=1;
-//	}
-
 	//なつき度上�
 	//時間経過で上�
 	public void increaseFriendshipOverTime(int elapsedTime) {
@@ -165,7 +153,6 @@ public class Character {
 	public int getIncreaseValueOfReceiveBait5() {
 		return increaseValueOfReceiveBait[5];
 	}
-
 	public String getImagePass() {
 		return imagePass;
 	}
