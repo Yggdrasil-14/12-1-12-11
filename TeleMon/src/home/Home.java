@@ -13,9 +13,7 @@ import bait.Bait;
 import character.Character;
 import data.Load;
 import data.Save;
-import encount.DesertFrame;
 import encount.EncountFrame;
-import encount.WatersideFrame;
 import library.LibraryMain;
 import time.Time;
 
@@ -31,8 +29,6 @@ public class Home extends JFrame implements ActionListener {
 	public int randomvalue = 0;
 
 	static EncountFrame EF;
-	static WatersideFrame WF;
-	static DesertFrame DF;
 	static LibraryMain Lframe;
 
 	Load ld = new Load();
@@ -266,23 +262,23 @@ public class Home extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "meadow");
 			EF = new EncountFrame(ms, ba);
 			randomvalue = MonRan(1);
-			EF.OpenEncount(randomvalue);
+			EF.OpenEncount(randomvalue,1);
 			main.Main.CloseH();
 			EF.setVisible(true);
 		} else if (cmd.equals(Waterside)) {
 			JOptionPane.showMessageDialog(null, "waterside");
-			WF = new WatersideFrame(ms,ba);
+			EF = new EncountFrame(ms, ba);
 			randomvalue = MonRan(2);
-			WF.OpenWaterside(randomvalue);
+			EF.OpenEncount(randomvalue,2);
 			main.Main.CloseH();
-			WF.setVisible(true);
+			EF.setVisible(true);
 		} else if (cmd.equals(Desert)) {
 			JOptionPane.showMessageDialog(null, "desert");
-			DF = new DesertFrame(ms,ba);
+			EF = new EncountFrame(ms, ba);
 			randomvalue = MonRan(3);
-			DF.OpenDesert(randomvalue);
+			EF.OpenEncount(randomvalue,3);
 			main.Main.CloseH();
-			DF.setVisible(true);
+			EF.setVisible(true);
 		}
 	}
 
@@ -304,14 +300,6 @@ public class Home extends JFrame implements ActionListener {
 	public static void CloseE() {
 		EF.setVisible(false);
 //		if(capture == 1) {ms[randomvalue].setCapture();}
-	}
-
-	public static void CloseW() {
-		WF.setVisible(false);
-	}
-
-	public static void CloseD() {
-		DF.setVisible(false);
 	}
 
 	public static void CloseL() {

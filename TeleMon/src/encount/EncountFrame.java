@@ -79,7 +79,7 @@ public class EncountFrame extends JFrame implements ActionListener {
 		ba[0] = new Bait(data);
 	}
 
-	public void OpenEncount(int rand) {
+	public void OpenEncount(int rand,int place) {
 		randomvalue = rand;
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -87,16 +87,15 @@ public class EncountFrame extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 
-//		if(place==1)
-		this.setTitle("草原エリア");
-//		else if(place==2) this.setTitle("水辺エリア");
-//		else if(place==3) this.setTitle("砂漠エリア");
+		if(place==1) this.setTitle("草原エリア");
+		else if(place==2) this.setTitle("水辺エリア");
+		else if(place==3) this.setTitle("砂漠エリア");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(480, 620);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
-		EncountLayout EL = new EncountLayout(ch[rand].getName());
+		EncountLayout EL = new EncountLayout(ch[rand].getName(),place);
 		EL.setBounds(0, 0, 480, 620);
 		pane = new JLayeredPane();
 		JLabel label = new JLabel(ch[rand].getName());
