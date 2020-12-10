@@ -21,6 +21,7 @@ import bait.Bait;
 import character.Character;
 import data.Save;
 import home.Home;
+import map.MapMain;
 
 public class EncountFrame extends JFrame implements ActionListener {
 
@@ -34,6 +35,7 @@ public class EncountFrame extends JFrame implements ActionListener {
 
 	Character ch[] = new Character[Save.cl];
 	Bait ba[] = new Bait[Save.bl];
+	MapMain map;
 	JLabel anc = new JLabel();
 	int randomvalue = 0;
 
@@ -110,7 +112,7 @@ public class EncountFrame extends JFrame implements ActionListener {
 
 		contentPane = getContentPane();
 
-		btn1 = new JButton("run");
+		btn1 = new JButton("ëﬁéU");
 		btn2 = new JButton("ä√Ç¢" + "x" + ba[0].getNumberOfBait(0));
 		btn3 = new JButton("ãÍÇ¢" + "x" + ba[0].getNumberOfBait(1));
 		btn4 = new JButton("êhÇ¢" + "x" + ba[0].getNumberOfBait(2));
@@ -143,13 +145,13 @@ public class EncountFrame extends JFrame implements ActionListener {
 		btn7.setActionCommand(delicious);
 		btn7.addActionListener(this);
 
-		btn1.setBounds(60, 540, 80, 50);
-		btn2.setBounds(160, 540, 90, 20);
-		btn3.setBounds(260, 540, 90, 20);
-		btn4.setBounds(360, 540, 90, 20);
-		btn5.setBounds(160, 570, 90, 20);
-		btn6.setBounds(260, 570, 90, 20);
-		btn7.setBounds(360, 570, 90, 20);
+		btn1.setBounds(10, 530, 80, 50);
+		btn2.setBounds(100, 530, 110, 20);
+		btn3.setBounds(220, 530, 110, 20);
+		btn4.setBounds(340, 530, 110, 20);
+		btn5.setBounds(100, 560, 110, 20);
+		btn6.setBounds(220, 560, 110, 20);
+		btn7.setBounds(340, 560, 110, 20);
 
 		pane.add(btn1);
 		pane.add(btn2);
@@ -208,8 +210,10 @@ public class EncountFrame extends JFrame implements ActionListener {
 				}
 			}
 			ch[randomvalue].resetLikability();
-			main.Main.OpenH(ch, ba);
-			Home.CloseE();
+			map=new MapMain();
+			map.openMap(ch,ba);
+			map.setVisible(true);
+			this.setVisible(false);
 		}
 
 		else if (cmd.equals(sweet)) {

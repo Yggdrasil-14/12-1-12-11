@@ -5,26 +5,26 @@ import character.Character;
 import home.Home;
 import library.LibraryDraw;
 import title.TitleMain;
+import map.MapMain;
 
 
 public class Main {
 
 	 static TitleMain Tframe;
 	 static Home home;
-	 //static LibraryMain Lframe;
 	 static LibraryDraw LD;
 
 
   public static void main(String[] args) {
-
+//	  MapMain map=new MapMain();
+//	  map.openMap();
+//	  map.setVisible(true);
     Tframe = new TitleMain();
     home = new Home();
-	 // LD =new LibraryDraw();
-	  //Lframe.add(LD);
 
     Tframe.OpenTitle();
 	Tframe.setVisible(true);
-
+	
   }
 
   /////////////ウィンドウオープナー////////////////////////////////

@@ -56,8 +56,6 @@ public class LibraryMain extends JFrame implements ActionListener{
             btn5.addActionListener(this);
             //contentPane.setLayout(null);		//自分で位置設定するならnullを入れる
 
-
-
             btn1.setBounds(25,520,80,20);		//戻るボタン
 			btn2.setBounds(365,520,80,20);		//進むボタン
 			btn3.setBounds(25,550,80,30);
