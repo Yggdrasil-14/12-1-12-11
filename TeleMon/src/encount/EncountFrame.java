@@ -38,6 +38,8 @@ public class EncountFrame extends JFrame implements ActionListener {
 	MapMain map;
 	JLabel anc = new JLabel();
 	int randomvalue = 0;
+	private int vertical,horizontal,directions;
+	private int receive;
 
 	JLayeredPane pane;
 	Container contentPane;
@@ -51,43 +53,54 @@ public class EncountFrame extends JFrame implements ActionListener {
 
 	public EncountFrame(Character c[], Bait b[]) {
 		String data[] = new String[Save.ec];
-		for (int i = 0; i < Save.cl; i++) {
-			data[0] = c[i].getName();
-			data[1] = Integer.toString(c[i].getCapture());
-			data[2] = Integer.toString(c[i].getPartner());
-			data[3] = Integer.toString(c[i].getAppearPlace());
-			data[4] = Integer.toString(c[i].getLikability());
-			data[5] = Integer.toString(c[i].getRequiredLikabilityToGet());
-			data[6] = Integer.toString(c[i].getFriendship());
-			data[7] = Integer.toString(c[i].getLimitOfReceiveBait());
-			data[8] = Integer.toString(c[i].getIncreaseValueOfReceiveBait0());
-			data[9] = Integer.toString(c[i].getIncreaseValueOfReceiveBait1());
-			data[10] = Integer.toString(c[i].getIncreaseValueOfReceiveBait2());
-			data[11] = Integer.toString(c[i].getIncreaseValueOfReceiveBait3());
-			data[12] = Integer.toString(c[i].getIncreaseValueOfReceiveBait4());
-			data[13] = Integer.toString(c[i].getIncreaseValueOfReceiveBait5());
-			ch[i] = new Character(data);
-		}
+		for(int i=0;i<14;i++) data[i] = "0";
+		for (int i = 0; i < Save.cl; i++) ch[i] = new Character(data);
 		
-		for (int i = 0; i < 6; i++) {
-			data[i] = b[0].getName(i);
-		}
-		for (int i = 0; i < 6; i++) {
-			data[i + 6] = Integer.toString(b[0].getNumberOfBait(i));
-		}
-		for (int i = 0; i < 4; i++) {
-			data[i + 12] = Integer.toString(b[0].getCompleteBonus(i));
-		}
+		for (int i = 0; i < 6; i++) data[i] = "0";
+		for (int i = 0; i < 6; i++) data[i + 6] = "0";
+		for (int i = 0; i < 4; i++) data[i + 12] = "0";
 		ba[0] = new Bait(data);
 	}
 
-	public void OpenEncount(int rand,int place) {
-		randomvalue = rand;
+	public void OpenEncount(Character c[],Bait b[],int rand,int place,int vertical,int horizontal,int directions) {
+		this.vertical=vertical;
+		this.horizontal=horizontal;
+		this.directions=directions;
+		this.randomvalue = rand;
+		this.receive=0;
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		for (int i = 0; Save.cl > i; i++) {
+			ch[i].setName(c[i].getName());
+			ch[i].setCapture(c[i].getCapture());
+			ch[i].setPartner(c[i].getPartner());
+			ch[i].setLikability(c[i].getLikability());
+			ch[i].setRequiredLikabilityToGet(c[i].getRequiredLikabilityToGet());
+			ch[i].setAppearPlace(c[i].getAppearPlace());
+			ch[i].setFriendship(c[i].getFriendship());
+			ch[i].setLimitOfReceiveBait(c[i].getLimitOfReceiveBait());
+			ch[i].setLimitOfReceiveBaitForReset(c[i].getLimitOfReceiveBaitForReset());
+			ch[i].setIncreaseValueOfReceiveBait(c[i].getIncreaseValueOfReceiveBait0(),
+					c[i].getIncreaseValueOfReceiveBait1(), c[i].getIncreaseValueOfReceiveBait2(),
+					c[i].getIncreaseValueOfReceiveBait3(), c[i].getIncreaseValueOfReceiveBait4(),
+					c[i].getIncreaseValueOfReceiveBait5());
+		}
+		for (int i = 0; i < 6; i++) {
+			ba[0].setName(i, b[0].getName(i));
+		}
+		for (int i = 0; i < 6; i++) {
+			ba[0].setNumberOfBait(i, b[0].getNumberOfBait(i));
+		}
+		for (int i = 0; i < 4; i++) {
+			ba[0].setCompleteBonus(i, b[0].getCompleteBonus(i));
+		}
+		System.out.println(ch[randomvalue].getLimitOfReceiveBait());
+		ch[randomvalue].setLimitOfReceiveBait();
+		System.out.println(ch[randomvalue].getLimitOfReceiveBait());
 
 		if(place==1) this.setTitle("草原エリア");
 		else if(place==2) this.setTitle("水辺エリア");
@@ -187,16 +200,39 @@ public class EncountFrame extends JFrame implements ActionListener {
 //		timer.schedule(task,5000);
 		///////////////////////////////////////////////////////////
 	}
-
+	
 	public void actionPerformed(ActionEvent event) {
 		String cmd = event.getActionCommand();
 
 		if (cmd.equals(run)) {
+//			if (ch[randomvalue].getRequiredLikabilityToGet() <= ch[randomvalue].getLikability()) {
+//				
+//				ch[randomvalue].setCapture();
+//				JOptionPane.showMessageDialog(null, "get!!");
+//				JOptionPane.showMessageDialog(null, "get All polock(x2) bonus!!");
+//				ba[0].monsterGetBonus();
+//			} else {
+//				Random randomValue = new Random();
+//				int rand = randomValue.nextInt(100);
+//				int probabilityOfGet = 100 * ch[randomvalue].getLikability()
+//						/ ch[randomvalue].getRequiredLikabilityToGet() * 4 / 5;
+//				if (probabilityOfGet > rand) {
+//					ch[randomvalue].setCapture();
+//					JOptionPane.showMessageDialog(null, "kakuritu-get");
+//					JOptionPane.showMessageDialog(null, "get All polock(x2) bonus!!");
+//					ba[0].monsterGetBonus();
+//				}
+//			}
 			if (ch[randomvalue].getRequiredLikabilityToGet() <= ch[randomvalue].getLikability()) {
 				ch[randomvalue].setCapture();
-				JOptionPane.showMessageDialog(null, "get!!");
-				JOptionPane.showMessageDialog(null, "get All polock(x2) bonus!!");
-				ba[0].monsterGetBonus();
+				int option = JOptionPane.showConfirmDialog(this, "仲間になりたそうにこちらをみている。\n仲間にしますか？",
+					      "", JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION){
+				JOptionPane.showMessageDialog(null, "モンスターをゲットした！！\n情報が図鑑に登録されます！");
+				JOptionPane.showMessageDialog(null, "ゲットボーナスでポロックを２個ずつゲット！");
+				ba[0].monsterGetBonus();}
+				else if (option == JOptionPane.NO_OPTION){
+					JOptionPane.showMessageDialog(null, "この場を立ち去った。");}
 			} else {
 				Random randomValue = new Random();
 				int rand = randomValue.nextInt(100);
@@ -204,22 +240,32 @@ public class EncountFrame extends JFrame implements ActionListener {
 						/ ch[randomvalue].getRequiredLikabilityToGet() * 4 / 5;
 				if (probabilityOfGet > rand) {
 					ch[randomvalue].setCapture();
-					JOptionPane.showMessageDialog(null, "kakuritu-get");
-					JOptionPane.showMessageDialog(null, "get All polock(x2) bonus!!");
-					ba[0].monsterGetBonus();
+					int option = JOptionPane.showConfirmDialog(this, "仲間になりたそうにこちらをみている。\n仲間にしますか？",
+						      "", JOptionPane.YES_NO_OPTION);
+					if (option == JOptionPane.YES_OPTION){
+					JOptionPane.showMessageDialog(null, "モンスターをゲットした！！\n情報が図鑑に登録されます！");
+					JOptionPane.showMessageDialog(null, "ゲットボーナスでポロックを２個ずつゲット！");
+					ba[0].monsterGetBonus();}
+					else if (option == JOptionPane.NO_OPTION){
+						JOptionPane.showMessageDialog(null, "この場を立ち去った。");}
 				}
 			}
+			ch[randomvalue].resetLimitOfReceiveBait();
 			ch[randomvalue].resetLikability();
-			map=new MapMain();
-			map.openMap(ch,ba);
-			map.setVisible(true);
+			home.Home.OpenM(ch, ba, vertical, horizontal, directions);
 			this.setVisible(false);
 		}
 
 		else if (cmd.equals(sweet)) {
+			
+			if(ch[randomvalue].getLimitOfReceiveBait()==receive) {
+				JOptionPane.showMessageDialog(null, "ポロックに興味を示さなかった...");
+				return;
+			}
 			if (ba[0].getNumberOfBait(0) > 0) {
 				anc.setText("sweetを投げた！！！");
 				ba[0].useBait(0);
+				receive++;
 				btn2.setText("甘い" + "x" + ba[0].getNumberOfBait(0));
 				pane.add(btn2);
 
@@ -240,9 +286,14 @@ public class EncountFrame extends JFrame implements ActionListener {
 		}
 
 		else if (cmd.equals(bitter)) {
+			if(ch[randomvalue].getLimitOfReceiveBait()==receive) {
+				JOptionPane.showMessageDialog(null, "ポロックに興味を示さなかった...");
+				return;
+			}
 			if (ba[0].getNumberOfBait(1) > 0) {
 				anc.setText("bitterを投げた！！！");
 				ba[0].useBait(1);
+				receive++;
 				btn3.setText("苦い" + "x" + ba[0].getNumberOfBait(1));
 				pane.add(btn3);
 				
@@ -263,9 +314,14 @@ public class EncountFrame extends JFrame implements ActionListener {
 		}
 		
 		else if (cmd.equals(sour)) {
+			if(ch[randomvalue].getLimitOfReceiveBait()==receive) {
+				JOptionPane.showMessageDialog(null, "ポロックに興味を示さなかった...");
+				return;
+			}
 			if (ba[0].getNumberOfBait(3) > 0) {
 				anc.setText("sourを投げた！！！");
 				ba[0].useBait(3);
+				receive++;
 				btn5.setText("すっぱい" + "x" + ba[0].getNumberOfBait(3));
 				pane.add(btn5);
 				
@@ -286,9 +342,14 @@ public class EncountFrame extends JFrame implements ActionListener {
 		}
 		
 		else if (cmd.equals(astringent)) {
+			if(ch[randomvalue].getLimitOfReceiveBait()==receive) {
+				JOptionPane.showMessageDialog(null, "ポロックに興味を示さなかった...");
+				return;
+			}
 			if (ba[0].getNumberOfBait(4) > 0) {
 				anc.setText("astringentを投げた！！！");
 				ba[0].useBait(4);
+				receive++;
 				btn6.setText("渋い" + "x" + ba[0].getNumberOfBait(4));
 				pane.add(btn6);
 				
@@ -309,9 +370,14 @@ public class EncountFrame extends JFrame implements ActionListener {
 		}
 		
 		else if (cmd.equals(spicy)) {
+			if(ch[randomvalue].getLimitOfReceiveBait()==receive) {
+				JOptionPane.showMessageDialog(null, "ポロックに興味を示さなかった...");
+				return;
+			}
 			if (ba[0].getNumberOfBait(2) > 0) {
 				anc.setText("spicyを投げた！！！");
 				ba[0].useBait(2);
+				receive++;
 				btn4.setText("辛い" + "x" + ba[0].getNumberOfBait(2));
 				pane.add(btn4);
 				
@@ -332,9 +398,14 @@ public class EncountFrame extends JFrame implements ActionListener {
 		}
 		
 		else if (cmd.equals(delicious)) {
+			if(ch[randomvalue].getLimitOfReceiveBait()==receive) {
+				JOptionPane.showMessageDialog(null, "ポロックに興味を示さなかった...");
+				return;
+			}
 			if (ba[0].getNumberOfBait(5) > 0) {
 				anc.setText("deliciousを投げた！！！");
 				ba[0].useBait(5);
+				receive++;
 				btn7.setText("虹" + "x" + ba[0].getNumberOfBait(5));
 				pane.add(btn7);
 				

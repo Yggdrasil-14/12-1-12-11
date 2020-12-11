@@ -24,13 +24,14 @@ public class Home extends JFrame implements ActionListener {
 	public static final String library = "library";
 	public static final String polock = "polock";
 	public static final String save = "save";
-
+	
 	static EncountFrame EF;
 	static LibraryMain Lframe;
 	static MapMain map;
 	
 	JButton btn1,btn2,btn3,btn4;
 	JLayeredPane pane;
+	HomeLayout HL;
 
 	Load ld = new Load();
 	Save sv = new Save();
@@ -39,11 +40,51 @@ public class Home extends JFrame implements ActionListener {
 	Time[] ti = new Time[Save.tl];
 	// LibraryDraw[] ld = new LibraryDraw[Save.ll];
 	String[][] str = new String[Save.tdl][Save.ec];
-
+	private int partner;
+	
+	Container contentPane;
+	
 	public Home() {
-
+		this.partner=-1;
 		ld.load(str);
 		storeData(str);
+		for(int i=0;i<Save.cl;i++) ms[i].increaseFriendshipOverTime(ti[0].getDifferenceValue());
+		ba[0].increaseBait(ti[0].getDifferenceValue());
+		
+		HL = new HomeLayout(); 
+		pane=new JLayeredPane();
+		contentPane = getContentPane();
+		Lframe = new LibraryMain("図鑑", 480, 620,ms);
+		map=new MapMain();
+		EF=new EncountFrame(ms,ba);
+		
+		btn1 = new JButton("探索");
+		btn2 = new JButton("図鑑");
+		btn3 = new JButton("虹ポロック");
+		btn4 = new JButton("セーブ");
+		
+		btn1.setActionCommand(search);
+		btn1.addActionListener(this);
+		btn2.setActionCommand(library);
+		btn2.addActionListener(this);
+		btn3.setActionCommand(polock);
+		btn3.addActionListener(this);
+		btn4.setActionCommand(save);
+		btn4.addActionListener(this);
+
+		btn1.setBounds(80, 510, 150, 30);
+		btn2.setBounds(240, 510, 150, 30);
+		btn3.setBounds(80, 550, 150, 30);
+		btn4.setBounds(240, 550, 150, 30);
+
+		pane.add(btn1);
+		pane.add(btn2);
+		pane.add(btn3);
+		pane.add(btn4);
+		pane.setLayer(btn1, 50);
+		pane.setLayer(btn2, 51);
+		pane.setLayer(btn3, 52);
+		pane.setLayer(btn4, 53);
 	}
 
 	public Home(int a) {
@@ -77,6 +118,12 @@ public class Home extends JFrame implements ActionListener {
 			// ld[j] = new LibraryDraw(str[i]);j++;
 			// }
 		}
+		for(int i=0;i<12;i++) {
+			if(ms[i].getPartner()==1) {
+				partner=i;
+				break;
+			}
+		}
 	}
 
 	public void OpenHome() {
@@ -87,41 +134,12 @@ public class Home extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
-		pane = new JLayeredPane();
-		HomeLayout HL = new HomeLayout();
+		if(partner!=-1) HL.setPartnerName(ms[partner].getName());
 		HL.setBounds(0, 0, 480, 620);
 
-		Container contentPane = getContentPane();
-
-		btn1 = new JButton("探索");
-		btn2 = new JButton("図鑑");
-		btn3 = new JButton("虹ポロック"+"x"+ba[0].getNumberOfBait(5));
-		btn4 = new JButton("セーブ");
-
-		btn1.setActionCommand(search);
-		btn1.addActionListener(this);
-		btn2.setActionCommand(library);
-		btn2.addActionListener(this);
-		btn3.setActionCommand(polock);
-		btn3.addActionListener(this);
-		btn4.setActionCommand(save);
-		btn4.addActionListener(this);
-
-		btn1.setBounds(80, 510, 150, 30);
-		btn2.setBounds(240, 510, 150, 30);
-		btn3.setBounds(80, 550, 150, 30);
-		btn4.setBounds(240, 550, 150, 30);
-
-		pane.add(btn1);
-		pane.add(btn2);
-		pane.add(btn3);
-		pane.add(btn4);
-		pane.setLayer(btn1, 50);
-		pane.setLayer(btn2, 51);
-		pane.setLayer(btn3, 52);
-		pane.setLayer(btn4, 53);
 		pane.add(HL);
 		pane.setLayer(HL, 42);
+		
 		contentPane.add(pane);
 	}
 
@@ -135,11 +153,11 @@ public class Home extends JFrame implements ActionListener {
 			ms[i].setAppearPlace(ch[i].getAppearPlace());
 			ms[i].setFriendship(ch[i].getFriendship());
 			ms[i].setLimitOfReceiveBait(ch[i].getLimitOfReceiveBait());
+			ch[i].setLimitOfReceiveBaitForReset(ch[i].getLimitOfReceiveBaitForReset());
 			ms[i].setIncreaseValueOfReceiveBait(ch[i].getIncreaseValueOfReceiveBait0(),
 					ch[i].getIncreaseValueOfReceiveBait1(), ch[i].getIncreaseValueOfReceiveBait2(),
 					ch[i].getIncreaseValueOfReceiveBait3(), ch[i].getIncreaseValueOfReceiveBait4(),
 					ch[i].getIncreaseValueOfReceiveBait5());
-
 		}
 		for (int i = 0; i < 6; i++) {
 			ba[0].setName(i, b[0].getName(i));
@@ -150,6 +168,13 @@ public class Home extends JFrame implements ActionListener {
 		for (int i = 0; i < 4; i++) {
 			ba[0].setCompleteBonus(i, b[0].getCompleteBonus(i));
 		}
+		for(int i=0;i<12;i++) {
+			if(ms[i].getPartner()==1) {
+				partner=i;
+				break;
+			}
+		}
+		if(partner!=-1) HL.setPartnerName(ms[partner].getName()); 
 
 		this.setTitle("Home");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -157,41 +182,13 @@ public class Home extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
-		pane = new JLayeredPane();
-		HomeLayout HL = new HomeLayout();
 		HL.setBounds(0, 0, 480, 620);
 
-		Container contentPane = getContentPane();
-
-		btn1 = new JButton("探索");
-		btn2 = new JButton("図鑑");
-		btn3 = new JButton("虹ポロック"+"x"+ba[0].getNumberOfBait(5));
-		btn4 = new JButton("セーブ");
-
-		btn1.setActionCommand(search);
-		btn1.addActionListener(this);
-		btn2.setActionCommand(library);
-		btn2.addActionListener(this);
-		btn3.setActionCommand(polock);
-		btn3.addActionListener(this);
-		btn4.setActionCommand(save);
-		btn4.addActionListener(this);
-
-		btn1.setBounds(80, 510, 150, 30);
-		btn2.setBounds(240, 510, 150, 30);
-		btn3.setBounds(80, 550, 150, 30);
-		btn4.setBounds(240, 550, 150, 30);
-
-		pane.add(btn1);
-		pane.add(btn2);
-		pane.add(btn3);
-		pane.add(btn4);
-		pane.setLayer(btn1, 50);
-		pane.setLayer(btn2, 51);
-		pane.setLayer(btn3, 52);
-		pane.setLayer(btn4, 53);
+		pane = new JLayeredPane();
+		
 		pane.add(HL);
 		pane.setLayer(HL, 42);
+		
 		contentPane.add(pane);
 	}
 
@@ -200,39 +197,42 @@ public class Home extends JFrame implements ActionListener {
 		String cmd = event.getActionCommand();
 
 		if (cmd.equals(search)) {
-			map=new MapMain();
-			EF=new EncountFrame(ms,ba);
-			map.openMap(ms,ba);
+			map.openMap(ms,ba,MapMain.initialPositionVertical,MapMain.initialPositionHorizontal,MapMain.initialDirection);
 			map.setVisible(true);
-			main.Main.CloseH();
+			this.setVisible(false);
 		} else if (cmd.equals(library)) {
-			Lframe = new LibraryMain("ZUKAN", 480, 620, ms);
+			Lframe.openLibrary(ms,ba);
 			Lframe.setVisible(true);
-			main.Main.CloseH();
+			this.setVisible(false);
 		} else if (cmd.equals(polock)) {
-			if (ba[0].getNumberOfBait(5) > 0) {
-				ba[0].useBait(5);
-				JOptionPane.showMessageDialog(null, "give monster to polock");
-				btn3.setText("虹ポロック" + "x" + ba[0].getNumberOfBait(5));
-				pane.add(btn3);
-			} else {
-				JOptionPane.showMessageDialog(null, "Rainbow Porock Empty!!");
+			if(partner==-1) return;
+			int option = JOptionPane.showConfirmDialog(this, "ポロックが欲しそうに見ている\nポロックをあげますか？(残り:"+ba[0].getNumberOfBait(5)+"個)",
+				      "", JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION){
+				
+				if (ba[0].getNumberOfBait(5) > 0) {
+					ba[0].useBait(5);
+					ms[partner].increaseFriendshipOverBait(5);
+					JOptionPane.showMessageDialog(null, "ポロックをあげた\n喜んでいるようだ！");
+				} else {
+					JOptionPane.showMessageDialog(null, "虹色ポロックがなくなってしまった...");
+				}
+			}else if (option == JOptionPane.NO_OPTION){
+					JOptionPane.showMessageDialog(null, "");
 			}
 		} else if (cmd.equals(save)) {
-			JOptionPane.showMessageDialog(null, "save");
+			JOptionPane.showMessageDialog(null, "セーブしました");
 			sv.save(ms, ba, ti);
 		}
 	}
-
-//	public static void CloseE() {
-//		EF.setVisible(false);
-//	}
 
 	public static void CloseL() {
 		Lframe.setVisible(false);
 	}
 	
-//	public static void CloseM() {
-//		map.setVisible(false);
-//	}
+	public static void OpenM(Character ch[], Bait ba[],int vertical,int horizontal,int directions) {
+		EF.setVisible(false);
+		map.openMap(ch,ba,vertical,horizontal,directions);
+		map.setVisible(true);
+	}
 }

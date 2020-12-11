@@ -21,7 +21,7 @@ public class Character {
 		this.requiredLikabilityToGet=Integer.parseInt(data[5]);
 		this.friendship=Integer.parseInt(data[6]);
 		this.limitOfReceiveBait=Integer.parseInt(data[7]);
-		limitOfReceiveBaitForReset=this.limitOfReceiveBait;
+		this.limitOfReceiveBaitForReset=Integer.parseInt(data[7]);
 		for(int i=0;i<Bait.baitKindNumber;i++) this.increaseValueOfReceiveBait[i]=Integer.parseInt(data[8+i]);
 		this.imagePass="src/charactor/Material/"+data[1]+".png";	//�要に応じて相対パス変更
 	}
@@ -121,6 +121,12 @@ public class Character {
 	}
 	public void setLimitOfReceiveBait(int limitOfReceiveBait) {
 		this.limitOfReceiveBait=limitOfReceiveBait;
+	}
+	public int getLimitOfReceiveBaitForReset() {
+		return limitOfReceiveBaitForReset;
+	}
+	public void setLimitOfReceiveBaitForReset(int limitOfReceiveBaitForReset) {
+		this.limitOfReceiveBaitForReset=limitOfReceiveBaitForReset;
 	}
 	public String getIncreaseValueOfReceiveBait(){
 		return increaseValueOfReceiveBait[0]+","+increaseValueOfReceiveBait[1]+","+

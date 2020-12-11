@@ -1,5 +1,7 @@
 package bait;
 
+import javax.swing.JOptionPane;
+
 public class Bait {
 	public static final int baitKindNumber=6;
 	public static final int completeBonusNumber=4;
@@ -24,19 +26,23 @@ public class Bait {
 	}
 	//図鑑コンプリート率ボーナス
 	public void libraryCompleteBonus(int completeRate) {
-		if(completeBonus[0]==0&&completeRate>25) {
+		if(completeBonus[0]==0&&25<=completeRate) {
+			JOptionPane.showMessageDialog(null, "図鑑コンプリートボーナス(２５%)で\nポロックを２個ずつゲット！");
 			increaseBait(2);
 			completeBonus[0]=1;
 		}
-		if(completeBonus[1]==0&&completeRate>50) {
+		if(completeBonus[1]==0&&50<=completeRate) {
+			JOptionPane.showMessageDialog(null, "図鑑コンプリートボーナス(５０%)で\nポロックを５個ずつゲット！");
 			increaseBait(5);
 			completeBonus[1]=1;
 		}
-		if(completeBonus[2]==0&&completeRate>75) {
+		if(completeBonus[2]==0&&75<=completeRate) {
+			JOptionPane.showMessageDialog(null, "図鑑コンプリートボーナス(７５%)で\nポロックを７個ずつゲット！");
 			increaseBait(7);
 			completeBonus[2]=1;
 		}
 		if(completeBonus[3]==0&&completeRate==100) {
+			JOptionPane.showMessageDialog(null, "図鑑コンプリートボーナス(１００%)で\nポロックを１０個ずつゲット！");
 			increaseBait(10);
 			completeBonus[3]=1;
 		}

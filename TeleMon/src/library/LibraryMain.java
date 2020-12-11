@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import character.Character;
-
+import data.Save;
+import bait.Bait;
 
 public class LibraryMain extends JFrame implements ActionListener{
 	final String back = "back";			//ページ戻る
@@ -17,17 +18,33 @@ public class LibraryMain extends JFrame implements ActionListener{
 	final String GoHome = "GoHome";
 	final String favoriteL = "favoriteL";
 	final String favoriteR = "favoriteR";
-	int FavoriteMonster;
 	LibraryDraw LD;
 	JButton btn4,btn5;
+	
+	private int compCount,compRate;
+	
+	Character ms[]=new Character[Save.cl];
+	Bait[] ba = new Bait[Save.bl];
 
-		public LibraryMain(String title, int width, int height,Character[] ms) {
+		public LibraryMain(String title, int width, int height,Character c[]) {
 			super(title);
 
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setSize(width,height);
 			setLocationRelativeTo(null);
-
+			
+			String data[] = new String[Save.ec];
+			for(int i=0;i<14;i++) data[i] = "0";
+			for (int i = 0; i < Save.cl; i++) {
+				data[0]=c[i].getName();
+				ms[i] = new Character(data);
+			}
+			
+			for (int i = 0; i < 6; i++) data[i] = "0";
+			for (int i = 0; i < 6; i++) data[i + 6] = "0";
+			for (int i = 0; i < 4; i++) data[i + 12] = "0";
+			ba[0] = new Bait(data);
+			
 			LD=new LibraryDraw(ms);
 			//LB=new LibraryBack();
 			LD.setBounds(0,0,480,620);
@@ -84,6 +101,40 @@ public class LibraryMain extends JFrame implements ActionListener{
 			contentPane.add(pane);
 
 		}
+		
+		public void openLibrary(Character c[],Bait b[]) {
+			compCount=0;
+			for (int i = 0; Save.cl > i; i++) {
+				ms[i].setName(c[i].getName());
+				ms[i].setCapture(c[i].getCapture());
+				ms[i].setPartner(c[i].getPartner());
+				ms[i].setLikability(c[i].getLikability());
+				ms[i].setRequiredLikabilityToGet(c[i].getRequiredLikabilityToGet());
+				ms[i].setAppearPlace(c[i].getAppearPlace());
+				ms[i].setFriendship(c[i].getFriendship());
+				ms[i].setLimitOfReceiveBait(c[i].getLimitOfReceiveBait());
+				ms[i].setLimitOfReceiveBaitForReset(c[i].getLimitOfReceiveBaitForReset());
+				ms[i].setIncreaseValueOfReceiveBait(c[i].getIncreaseValueOfReceiveBait0(),
+						c[i].getIncreaseValueOfReceiveBait1(), c[i].getIncreaseValueOfReceiveBait2(),
+						c[i].getIncreaseValueOfReceiveBait3(), c[i].getIncreaseValueOfReceiveBait4(),
+						c[i].getIncreaseValueOfReceiveBait5());
+				if(c[i].getCapture()==1) compCount++;
+			}
+			for (int i = 0; i < 6; i++) {
+				ba[0].setName(i, b[0].getName(i));
+			}
+			for (int i = 0; i < 6; i++) {
+				ba[0].setNumberOfBait(i, b[0].getNumberOfBait(i));
+			}
+			for (int i = 0; i < 4; i++) {
+				ba[0].setCompleteBonus(i, b[0].getCompleteBonus(i));
+			}
+			
+			compRate = (compCount * 100) / Save.cl;
+			ba[0].libraryCompleteBonus(compRate);
+			
+			LD.settingLibraryDraw(ms,compRate);
+		}
 
 		public void actionPerformed(ActionEvent event){
 
@@ -102,11 +153,10 @@ public class LibraryMain extends JFrame implements ActionListener{
 				System.out.println(LD.page);		//ボタンが押されるとコンソールに文字表示
 				LD.setVisible(true);
 				}
-			else if(LD.page == 7){}
 			else if(cmd.equals(GoHome)) {
-				main.Main.OpenH();
+				main.Main.OpenH(ms,ba);
 				this.setVisible(false);
-					}
+			}
 			if(LD.page==0) {
 				btn4.setVisible(false);
 				btn5.setVisible(false);
@@ -117,61 +167,59 @@ public class LibraryMain extends JFrame implements ActionListener{
 			
 			if(cmd.equals(favoriteL)) {					
 				LD.setVisible(false);
+				for(int i=0;i<12;i++) ms[i].setPartner(0);
 				switch(2*(LD.page-1)) {
 				case 0:
-					FavoriteMonster=0;
+					ms[0].setPartner(1);
 					break;
 				case 2:
-					FavoriteMonster=2;
+					ms[2].setPartner(1);
 					break;
 				case 4:
-					FavoriteMonster=4;
+					ms[4].setPartner(1);
 					break;
 				case 6:
-					FavoriteMonster=6;
+					ms[6].setPartner(1);
 					break;
 				case 8:
-					FavoriteMonster=8;
+					ms[8].setPartner(1);
 					break;
 				case 10:
-					FavoriteMonster=10;
+					ms[10].setPartner(1);
 					break;
 				
 				}
 				
-				
-				System.out.println("FavoriteMonster:"+FavoriteMonster);		//お気に入りモンスター番号表示
 				LD.setVisible(true);
-				}
+			}
 			
 			if(cmd.equals(favoriteR)) {					//戻るボタンクリックでLD.pageをデクリメント
 				LD.setVisible(false);
+				for(int i=0;i<12;i++) ms[i].setPartner(0);
 				switch(2*(LD.page-1)+1) {
 				case 1:
-					FavoriteMonster=1;
+					ms[1].setPartner(1);
 					break;
 				case 3:
-					FavoriteMonster=3;
+					ms[3].setPartner(1);
 					break;
 				case 5:
-					FavoriteMonster=5;
+					ms[5].setPartner(1);
 					break;
 				case 7:
-					FavoriteMonster=7;
+					ms[7].setPartner(1);
 					break;
 				case 9:
-					FavoriteMonster=9;
+					ms[9].setPartner(1);
 					break;
 				case 11:
-					FavoriteMonster=11;
+					ms[11].setPartner(1);
 					break;
 				
 				}
 				
-				
-				System.out.println("FavoriteMonster:"+FavoriteMonster);		//お気に入りモンスター番号表示
 				LD.setVisible(true);
-				}
+			}
 		}
 
 }

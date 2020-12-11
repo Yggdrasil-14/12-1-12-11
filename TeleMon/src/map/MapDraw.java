@@ -20,7 +20,13 @@ public class MapDraw extends JPanel{
 	public MapDraw() {
 		posX=-32*MapMain.initialPositionHorizontal;
 		posY=-32*MapMain.initialPositionVertical;
-		direction=1;
+		direction=MapMain.initialDirection;
+	}
+	
+	public void settingMapDraw(int vertical,int horizontal,int direction) {
+		posX=-32*horizontal;
+		posY=-32*vertical;
+		this.direction=direction;
 	}
 	
 	public void setDirection(int direction) {

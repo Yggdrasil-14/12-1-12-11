@@ -5,11 +5,13 @@ import java.time.temporal.ChronoUnit;
 
 public class Time {
 	private LocalDateTime nowDateTime,previousDateTime;
-	private int year,month,date,hour,minute,second;
 
 	//コンストラクタ
 	public Time(String[] str){
-		//previousDateTime=recordDate;
+		previousDateTime=LocalDateTime.of(Integer.parseInt(str[0]),
+				Integer.parseInt(str[1]),Integer.parseInt(str[2]),
+				Integer.parseInt(str[3]),Integer.parseInt(str[4]),
+				Integer.parseInt(str[5]));
 		nowDateTime=LocalDateTime.now();
 	}
 
@@ -22,14 +24,14 @@ public class Time {
 	//時間の差分算出
 	public int getDifferenceValue() {
 		long differenceValue;
-		differenceValue=ChronoUnit.SECONDS.between(previousDateTime,nowDateTime);
+		differenceValue=ChronoUnit.HOURS.between(previousDateTime,nowDateTime);
 		return (int)differenceValue;
 	}
-	public int getDifferenceValue(LocalDateTime start,LocalDateTime end) {
-		long differenceValue;
-		differenceValue=ChronoUnit.SECONDS.between(start,end);
-		return (int)differenceValue;
-	}
+//	public int getDifferenceValue(LocalDateTime start,LocalDateTime end) {
+//		long differenceValue;
+//		differenceValue=ChronoUnit.SECONDS.between(start,end);
+//		return (int)differenceValue;
+//	}
 
 	//値取得
 	public LocalDateTime getNowDateTime() {
