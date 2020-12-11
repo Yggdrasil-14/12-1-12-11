@@ -7,10 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.UIManager;
 
+import bait.Bait;
 import character.Character;
 import data.Save;
-import bait.Bait;
 
 public class LibraryMain extends JFrame implements ActionListener{
 	final String back = "back";			//ページ戻る
@@ -21,30 +22,36 @@ public class LibraryMain extends JFrame implements ActionListener{
 	LibraryDraw LD;
 	JButton btn4,btn5;
 	
+
 	private int compCount,compRate;
-	
+
 	Character ms[]=new Character[Save.cl];
 	Bait[] ba = new Bait[Save.bl];
 
 		public LibraryMain(String title, int width, int height,Character c[]) {
 			super(title);
 
+			try {
+				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setSize(width,height);
 			setLocationRelativeTo(null);
-			
+
 			String data[] = new String[Save.ec];
 			for(int i=0;i<14;i++) data[i] = "0";
 			for (int i = 0; i < Save.cl; i++) {
 				data[0]=c[i].getName();
 				ms[i] = new Character(data);
 			}
-			
+
 			for (int i = 0; i < 6; i++) data[i] = "0";
 			for (int i = 0; i < 6; i++) data[i + 6] = "0";
 			for (int i = 0; i < 4; i++) data[i + 12] = "0";
 			ba[0] = new Bait(data);
-			
+
 			LD=new LibraryDraw(ms);
 			//LB=new LibraryBack();
 			LD.setBounds(0,0,480,620);
@@ -82,8 +89,8 @@ public class LibraryMain extends JFrame implements ActionListener{
 			pane.add(btn1);
 			pane.add(btn2);
 			pane.add(btn3);
-			
-			
+
+
 			pane.add(btn4);
 			pane.add(btn5);
 			btn4.setVisible(false);
@@ -101,7 +108,7 @@ public class LibraryMain extends JFrame implements ActionListener{
 			contentPane.add(pane);
 
 		}
-		
+
 		public void openLibrary(Character c[],Bait b[]) {
 			compCount=0;
 			for (int i = 0; Save.cl > i; i++) {
@@ -129,10 +136,10 @@ public class LibraryMain extends JFrame implements ActionListener{
 			for (int i = 0; i < 4; i++) {
 				ba[0].setCompleteBonus(i, b[0].getCompleteBonus(i));
 			}
-			
+
 			compRate = (compCount * 100) / Save.cl;
 			ba[0].libraryCompleteBonus(compRate);
-			
+
 			LD.settingLibraryDraw(ms,compRate);
 		}
 
@@ -144,13 +151,11 @@ public class LibraryMain extends JFrame implements ActionListener{
 			if(cmd.equals(back)) {					//戻るボタンクリックでLD.pageをデクリメント
 				LD.setVisible(false);
 				if(LD.page>0) {LD.page--;}
-				System.out.println(LD.page);		//ボタンが押されるとコンソールに文字表示
 				LD.setVisible(true);
 				}
 			else if(cmd.equals(forward)) {			//進むボタンクリックでLD.pageをインクリメント
 				LD.setVisible(false);
 				if(LD.page<6) {LD.page++;}
-				System.out.println(LD.page);		//ボタンが押されるとコンソールに文字表示
 				LD.setVisible(true);
 				}
 			else if(cmd.equals(GoHome)) {
@@ -164,8 +169,8 @@ public class LibraryMain extends JFrame implements ActionListener{
 				btn4.setVisible(true);
 				btn5.setVisible(true);
 			}
-			
-			if(cmd.equals(favoriteL)) {					
+
+			if(cmd.equals(favoriteL)) {
 				LD.setVisible(false);
 				for(int i=0;i<12;i++) ms[i].setPartner(0);
 				switch(2*(LD.page-1)) {
@@ -187,12 +192,12 @@ public class LibraryMain extends JFrame implements ActionListener{
 				case 10:
 					ms[10].setPartner(1);
 					break;
-				
+
 				}
-				
+
 				LD.setVisible(true);
 			}
-			
+
 			if(cmd.equals(favoriteR)) {					//戻るボタンクリックでLD.pageをデクリメント
 				LD.setVisible(false);
 				for(int i=0;i<12;i++) ms[i].setPartner(0);
@@ -215,9 +220,9 @@ public class LibraryMain extends JFrame implements ActionListener{
 				case 11:
 					ms[11].setPartner(1);
 					break;
-				
+
 				}
-				
+
 				LD.setVisible(true);
 			}
 		}

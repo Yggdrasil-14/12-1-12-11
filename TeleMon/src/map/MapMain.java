@@ -1,28 +1,28 @@
 package map;
 
-import java.util.Random;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
+import bait.Bait;
 import character.Character;
 import data.Save;
-import bait.Bait;
 import encount.EncountFrame;
 
 public class MapMain extends JFrame implements ActionListener {
-	public static final int initialPositionVertical=3; 
+	public static final int initialPositionVertical=3;
 	public static final int initialPositionHorizontal=9;
 	public static final int initialDirection=1;
-	
+
 	public static final String direction[]= {"↓","↑","→","←"};
-	
+
 	int mapJudge[][]= {
 			{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
 			{-1, 3, 3, 3, 3, 3, 0, 0 ,0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,-1},
@@ -42,53 +42,59 @@ public class MapMain extends JFrame implements ActionListener {
 	};
 	private int vertical,horizontal,directions;
 	public int randomvalue = 0;
-	
+
 	static EncountFrame EF;
-	
+
 	Character ms[]=new Character[Save.cl];
 	Bait[] ba = new Bait[Save.bl];
 	MapDraw draw;
-	
+
 	JLayeredPane pane;
 	Container contentPane;
 	JButton btn[]=new JButton[4];
-	
+
 	public MapMain() {
 		vertical=initialPositionVertical;
 		horizontal=initialPositionHorizontal;
 		directions=initialDirection;
-		
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		String data[] = new String[Save.ec];
 		for(int i=0;i<14;i++) data[i] = "0";
 		for (int i = 0; i < Save.cl; i++) ms[i] = new Character(data);
-		
+
 		for (int i = 0; i < 6; i++) data[i] = "0";
 		for (int i = 0; i < 6; i++) data[i + 6] = "0";
 		for (int i = 0; i < 4; i++) data[i + 12] = "0";
 		ba[0] = new Bait(data);
-		
+
 		this.setTitle("探索");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(480,640);
 		this.setLocationRelativeTo(null);
-		
+
 		pane=new JLayeredPane();
 		contentPane=getContentPane();
 		btn[0]=new JButton("↓");
 		btn[1]=new JButton("↑");
 		btn[2]=new JButton("→");
 		btn[3]=new JButton("←");
-		
+
 		for(int i=0;i<4;i++) {
 			btn[i].setActionCommand(direction[i]);
 			btn[i].addActionListener(this);
 		}
-		
+
 		btn[0].setBounds(200,580,80,20);
 		btn[1].setBounds(200,520,80,20);
 		btn[2].setBounds(260,550,80,20);
 		btn[3].setBounds(140,550,80,20);
-		
+
+
 		draw=new MapDraw();
 		pane.add(draw);
 		for(int i=0;i<4;i++) {
@@ -96,12 +102,12 @@ public class MapMain extends JFrame implements ActionListener {
 			pane.setLayer(btn[i],20);
 		}
 	}
-	
+
 	public void openMap(Character c[],Bait b[],int vertical,int horizontal,int directions) {
 		this.vertical=vertical;
 		this.horizontal=horizontal;
 		this.directions=directions;
-		
+
 		for (int i = 0; Save.cl > i; i++) {
 			ms[i].setName(c[i].getName());
 			ms[i].setCapture(c[i].getCapture());
@@ -126,14 +132,14 @@ public class MapMain extends JFrame implements ActionListener {
 		for (int i = 0; i < 4; i++) {
 			ba[0].setCompleteBonus(i, b[0].getCompleteBonus(i));
 		}
-		
+
 		draw.settingMapDraw(vertical,horizontal,directions);
 		draw.setBounds(0,0,480,640);
-		
+
 		pane.setLayer(draw,10);
 		contentPane.add(pane);
 	}
-	
+
 	//進めるか判定
 	public boolean moveJudge(int direction) {
 		//direction=1:↓ 2:↑ 3:→ 4:←
@@ -143,7 +149,7 @@ public class MapMain extends JFrame implements ActionListener {
 		if(direction==4&&mapJudge[vertical][horizontal-1]!=-1) return true;
 		return false;
 	}
-	
+
 	//進める
 	public void move(int direction) {
 		if(direction==1) vertical++;
@@ -151,7 +157,7 @@ public class MapMain extends JFrame implements ActionListener {
 		else if(direction==3) horizontal++;
 		else if(direction==4) horizontal--;
 	}
-	
+
 	//エンカウントするか判定
 	public boolean encountJudge() {
 		if(!(1<=mapJudge[vertical][horizontal]&&mapJudge[vertical][horizontal]<=3)) return false;
@@ -159,7 +165,7 @@ public class MapMain extends JFrame implements ActionListener {
 		if(rand.nextInt(10)!=0) return false;
 		return true;
 	}
-	
+
 	//エンカウントモンスター決定
 	public int MonRan(int place) {
 		int random = 0;
@@ -168,12 +174,12 @@ public class MapMain extends JFrame implements ActionListener {
 		if (place == 3) random = (int) (Math.random() * 3 + 9);
 		return random;
 	}
-	
+
 	//アクションイベント
 	public void actionPerformed(ActionEvent e) {
 		//contentPane.doLayout();
 		String cmd=e.getActionCommand();
-		
+
 		for(int i=0;i<4;i++) {
 			if(cmd.equals(direction[i])) {
 				directions=i+1;
@@ -202,13 +208,13 @@ public class MapMain extends JFrame implements ActionListener {
 			}
 		}
 		repaint();
-		
+
 		if(mapJudge[vertical][horizontal]==4) {
 			JOptionPane.showMessageDialog(null, "ホームに戻ります");
 			main.Main.OpenH(ms,ba);
 			this.setVisible(false);
 		}
-		
+
 		if(encountJudge()) {
 			JOptionPane.showMessageDialog(null, "モンスターを発見!");
 			EF = new EncountFrame(ms,ba);
